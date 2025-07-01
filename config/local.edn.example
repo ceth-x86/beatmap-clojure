@@ -1,0 +1,8 @@
+{:secrets
+ {:developer-token "your-developer-token-here"
+  :user-token "your-user-token-here"
+  :openai-api-key "your-openai-api-key-here"}
+ 
+ :development
+ {:debug true
+  :mock-external-services true}} 

@@ -8,7 +8,35 @@ Download from https://github.com/beatmap/beatmap
 
 ## Usage
 
-FIXME: explanation
+### Quick Start
+
+1. **Setup configuration:**
+   ```bash
+   make setup-config
+   ```
+
+2. **Run the application:**
+   ```bash
+   make run
+   ```
+
+### Configuration
+
+For detailed configuration instructions, see [Configuration Guide](doc/configuration.md).
+
+**Quick setup:**
+- Copy `config/local.edn.example` to `config/local.edn`
+- Edit `config/local.edn` with your actual tokens and secrets
+- Optionally create `.env` file from `env.example` for environment variables
+
+### Tokens
+
+The application uses three tokens:
+- `developer-token` - Developer authentication token
+- `user-token` - User authentication token
+- `openai-api-key` - OpenAI API key
+
+For detailed token usage, see [Tokens Usage Guide](doc/tokens-usage.md).
 
 Run the project directly, via `:exec-fn`:
 

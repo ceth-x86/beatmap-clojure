@@ -1,0 +1,12 @@
+{:app
+ {:name "beatmap"
+  :version "0.1.0-SNAPSHOT"
+  :environment (or (System/getenv "APP_ENV") "development")}
+ 
+ :api
+ {:base-url (or (System/getenv "API_BASE_URL") "https://api.example.com")
+  :timeout (or (System/getenv "API_TIMEOUT") "30000")}
+ 
+ :logging
+ {:level (or (System/getenv "LOG_LEVEL") "info")
+  :format (or (System/getenv "LOG_FORMAT") "json")}} 
