@@ -1,6 +1,28 @@
 # beatmap
 
-FIXME: my new application.
+A Clojure application for interacting with Apple Music API, managing tokens securely, and exporting user albums to CSV format.
+
+## Features
+
+- **Apple Music Integration**: Fetch user albums from Apple Music library
+- **Secure Token Management**: Layered configuration with environment variables
+- **CSV Export**: Export albums with artist, year, and album name to CSV
+- **Case-Insensitive Sorting**: Albums are sorted by artist, year, and album name, all case-insensitive
+- **Progress Tracking**: Real-time progress display during album fetching
+- **Modular Architecture**: Clean separation of concerns with dedicated modules
+
+## Project Structure
+
+```
+src/beatmap/
+├── beatmap.clj      # Main application entry point
+├── apple_music.clj  # Apple Music API integration
+├── csv_export.clj   # CSV export functionality
+├── config.clj       # Configuration management
+├── tokens.clj       # Token validation and management
+├── entities.clj     # Domain entities and sorting logic
+└── operations.clj   # High-level album processing operations
+```
 
 ## Installation
 
@@ -20,6 +42,12 @@ Download from https://github.com/beatmap/beatmap
    make run
    ```
 
+The application will:
+- Validate your Apple Music tokens
+- Fetch all albums from your library (with pagination)
+- Save them to `resources/catalog/albums.csv` with columns: Artist, Year, Album (sorted case-insensitively)
+- Display sample albums in the console
+
 ### Configuration
 
 For detailed configuration instructions, see [Configuration Guide](doc/configuration.md).
@@ -38,53 +66,66 @@ The application uses three tokens:
 
 For detailed token usage, see [Tokens Usage Guide](doc/tokens-usage.md).
 
-Run the project directly, via `:exec-fn`:
+### Available Commands
 
-    $ clojure -X:run-x
-    Hello, Clojure!
+Run the application:
+```bash
+make run
+# or
+clojure -X:run-x
+```
 
-Run the project, overriding the name to be greeted:
+Setup configuration:
+```bash
+make setup-config
+```
 
-    $ clojure -X:run-x :name '"Someone"'
-    Hello, Someone!
+Run tests:
+```bash
+clojure -T:build test
+```
 
-Run the project directly, via `:main-opts` (`-m beatmap.beatmap`):
-
-    $ clojure -M:run-m
-    Hello, World!
-
-Run the project, overriding the name to be greeted:
-
-    $ clojure -M:run-m Via-Main
-    Hello, Via-Main!
-
-Run the project's tests (they'll fail until you edit them):
-
-    $ clojure -T:build test
-
-Run the project's CI pipeline and build an uberjar (this will fail until you edit the tests to pass):
-
-    $ clojure -T:build ci
-
-Run that uberjar:
-
-    $ java -jar target/beatmap-0.1.0-SNAPSHOT.jar
-
-## Options
-
-FIXME: listing of options this app accepts.
+Build uberjar:
+```bash
+clojure -T:build ci
+java -jar target/beatmap-0.1.0-SNAPSHOT.jar
+```
 
 ## Examples
 
+### Sample Output
+
+When you run the application, you'll see output like:
+
+```
+Hello, Clojure!
+Running beatmap application
+✅ All tokens are configured
+🎵 Starting Apple Music integration...
+🎵 Fetching first 100 albums for main application...
+📄 Fetching page 1 (offset: 0)...
+✅ Page 1 loaded: 25 albums
+📊 Total albums so far: 25
 ...
+💾 Saving 100 albums to CSV file...
+✅ Written 100 albums to resources/catalog/albums.csv
+✅ Successfully saved albums to: resources/catalog/albums.csv
+📊 Sample of your albums:
+   1. IDLES (2019) - A Beautiful Thing: IDLES Live at Le Bataclan
+   2. Depeche Mode (1982) - A Broken Frame (Deluxe)
+   3. Biffy Clyro (2020) - A Celebration of Endings
+```
 
-### Bugs
+### CSV Output Format
 
-...
+The generated `resources/catalog/albums.csv` file contains:
+- **Artist**: Artist name
+- **Year**: Release year (or "Unknown" if not available)
+- **Album**: Album name
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+### API Usage Note
+
+When calling functions like `get-user-albums`, use keyword arguments and numbers (e.g., `:limit 5`, `:offset 20`), not string keys or values.
 
 ## License
 

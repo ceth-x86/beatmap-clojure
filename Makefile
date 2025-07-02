@@ -3,8 +3,7 @@
 # Default target
 help:
 	@echo "Available commands:"
-	@echo "  run        - Run the project with default greeting"
-	@echo "  run-custom - Run with custom name (usage: make run-custom NAME=YourName)"
+	@echo "  run        - Run the project and export albums to CSV"
 	@echo "  test       - Run tests"
 	@echo "  build      - Build uberjar"
 	@echo "  run-jar    - Run the built JAR file"
@@ -13,6 +12,7 @@ help:
 	@echo "  deps       - Check dependencies"
 	@echo "  setup-config - Setup configuration files"
 	@echo "  check-tokens - Check if all tokens are configured"
+	@echo "  test-apple-music - Test Apple Music API"
 	@echo "  show-config - Show current configuration"
 	@echo "  help       - Show this help"
 
@@ -124,4 +124,11 @@ show-config:
 # Check token configuration
 check-tokens:
 	@echo "Checking token configuration..."
-	@clojure -M -e "(require '[beatmap.tokens :as tokens]) (if (tokens/validate-tokens) (println \"✅ All tokens are configured\") (do (println \"⚠️  Missing tokens:\") (doseq [[k v] (tokens/missing-tokens)] (println (str \"   - \" k)))))" 
+	@clojure -M -e "(require '[beatmap.tokens :as tokens]) (if (tokens/validate-tokens) (println \"✅ All tokens are configured\") (do (println \"⚠️  Missing tokens:\") (doseq [[k v] (tokens/missing-tokens)] (println (str \"   - \" k)))))"
+
+# Test Apple Music API
+test-apple-music:
+	@echo "Testing Apple Music API..."
+	@clojure -M -e "(require '[beatmap.apple-music :as apple-music]) (try (let [album (apple-music/get-user-albums :limit 1)] (println \"✅ Apple Music API test successful\") (println (str \"Album data: \" (pr-str album)))) (catch Exception e (println (str \"❌ Apple Music API test failed: \" (.getMessage e)))))"
+
+ 
