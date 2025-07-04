@@ -1,6 +1,7 @@
-(ns beatmap.apple-music-test
+(ns beatmap.apple-music.albums-test
   (:require [clojure.test :refer :all]
-            [beatmap.apple-music :as am]))
+            [beatmap.apple-music.albums :as albums]
+            [beatmap.apple-music.core :as core]))
 
 ;; Мокаем функцию make-apple-music-request для unit-тестов
 (def mock-albums
@@ -18,34 +19,34 @@
     {:data (subvec mock-albums offset (min (+ offset limit) (count mock-albums)))}))
 
 (deftest get-albums-with-pagination-basic
-  (with-redefs [am/get-user-albums mock-get-user-albums]
+  (with-redefs [albums/get-user-albums mock-get-user-albums]
     (testing "Fetch first 10 albums"
-      (let [albums (am/get-albums-with-pagination :limit 10)]
+      (let [albums (albums/get-albums-with-pagination :limit 10)]
         (is (= 10 (count albums)))
         (is (= "Artist1" (get-in (first albums) [:attributes :artistName])))))
     (testing "Fetch all albums (limit > available)"
-      (let [albums (am/get-albums-with-pagination :limit 200)]
+      (let [albums (albums/get-albums-with-pagination :limit 200)]
         (is (= 100 (count albums)))))
     (testing "Fetch with custom page size"
-      (let [albums (am/get-albums-with-pagination :limit 30 :page-size 7)]
+      (let [albums (albums/get-albums-with-pagination :limit 30 :page-size 7)]
         (is (= 30 (count albums)))
         (is (= "Artist30" (get-in (last albums) [:attributes :artistName])))))))
 
 (deftest get-albums-with-pagination-empty
-  (with-redefs [am/get-user-albums (fn [& _] {:data []})]
+  (with-redefs [albums/get-user-albums (fn [& _] {:data []})]
     (testing "Returns empty when no albums"
-      (let [albums (am/get-albums-with-pagination :limit 10)]
+      (let [albums (albums/get-albums-with-pagination :limit 10)]
         (is (empty? albums))))))
 
 (deftest get-albums-with-pagination-error
-  (with-redefs [am/get-user-albums (fn [& _] nil)]
+  (with-redefs [albums/get-user-albums (fn [& _] nil)]
     (testing "Returns collected albums on error"
-      (let [albums (am/get-albums-with-pagination :limit 10)]
+      (let [albums (albums/get-albums-with-pagination :limit 10)]
         (is (empty? albums))))))
 
 (deftest get-user-albums-params
   (testing "get-user-albums builds params correctly"
-    (with-redefs [am/make-apple-music-request (fn [endpoint & {:keys [params]}] params)]
-      (is (= {:limit 5} (am/get-user-albums :limit 5)))
-      (is (= {:limit 10 :offset 20} (am/get-user-albums :limit 10 :offset 20)))
-      (is (= {} (am/get-user-albums))))))
+    (with-redefs [core/make-apple-music-request (fn [endpoint & {:keys [params]}] params)]
+      (is (= {:limit 5} (albums/get-user-albums :limit 5)))
+      (is (= {:limit 10 :offset 20} (albums/get-user-albums :limit 10 :offset 20)))
+      (is (= {} (albums/get-user-albums)))))) 

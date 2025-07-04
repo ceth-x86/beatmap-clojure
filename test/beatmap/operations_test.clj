@@ -1,6 +1,11 @@
 (ns beatmap.operations-test
   (:require [clojure.test :refer :all]
-            [beatmap.operations :as ops]))
+            [beatmap.operations :as ops]
+            [beatmap.apple-music.albums :as albums]
+            [beatmap.apple-music.playlists :as playlists]
+            [beatmap.csv-export.albums :as albums-csv]
+            [beatmap.csv-export.playlists :as playlists-csv]
+            [clojure.java.io :as io]))
 
 ;; Mock data for testing
 (def mock-albums
@@ -27,9 +32,9 @@
 
 (deftest process-apple-music-albums-success-test
   (testing "successfully processes albums and saves to CSV"
-    (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] mock-albums)
+    (with-redefs [albums/get-albums-with-pagination (fn [& _] mock-albums)
                   beatmap.entities/sort-albums-by-artist-year-name (constantly mock-sorted-albums)
-                  beatmap.csv-export/write-albums-to-csv (fn [albums & {:keys [filename]}]
+                  albums-csv/write-albums-to-csv (fn [albums & {:keys [filename]}]
                                                           (is (= mock-sorted-albums albums))
                                                           (is (= "test_albums.csv" filename))
                                                           "test_albums.csv")]
@@ -38,36 +43,36 @@
 
 (deftest process-apple-music-albums-empty-test
   (testing "handles empty albums list"
-    (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] [])]
+    (with-redefs [albums/get-albums-with-pagination (fn [& _] [])]
       (let [result (ops/process-apple-music-albums "test_albums.csv")]
         (is (nil? result))))))
 
 (deftest process-apple-music-albums-nil-test
   (testing "handles nil albums list"
-    (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] nil)]
+    (with-redefs [albums/get-albums-with-pagination (fn [& _] nil)]
       (let [result (ops/process-apple-music-albums "test_albums.csv")]
         (is (nil? result))))))
 
 (deftest try-process-albums-success-test
   (testing "successfully processes albums without errors"
-    (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] mock-albums)
+    (with-redefs [albums/get-albums-with-pagination (fn [& _] mock-albums)
                   beatmap.entities/sort-albums-by-artist-year-name (constantly mock-sorted-albums)
-                  beatmap.csv-export/write-albums-to-csv (fn [& _] "test_albums.csv")]
+                  albums-csv/write-albums-to-csv (fn [& _] "test_albums.csv")]
       (let [result (ops/try-process-albums "test_albums.csv")]
         (is (nil? result))))))
 
 (deftest try-process-albums-error-test
   (testing "handles errors gracefully"
-    (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] 
+    (with-redefs [albums/get-albums-with-pagination (fn [& _] 
                                                                   (throw (ex-info "API Error" {:status 500})))]
       (let [result (ops/try-process-albums "test_albums.csv")]
         (is (nil? result))))))
 
 (deftest try-process-albums-csv-error-test
   (testing "handles CSV writing errors gracefully"
-    (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] mock-albums)
+    (with-redefs [albums/get-albums-with-pagination (fn [& _] mock-albums)
                   beatmap.entities/sort-albums-by-artist-year-name (constantly mock-sorted-albums)
-                  beatmap.csv-export/write-albums-to-csv (fn [& _] 
+                  albums-csv/write-albums-to-csv (fn [& _] 
                                                           (throw (ex-info "File write error" {:error "Permission denied"})))]
       (let [result (ops/try-process-albums "test_albums.csv")]
         (is (nil? result))))))
@@ -77,14 +82,14 @@
     (let [api-calls (atom 0)
           sort-calls (atom 0)
           csv-calls (atom 0)]
-      (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] 
+      (with-redefs [albums/get-albums-with-pagination (fn [& _] 
                                                                     (swap! api-calls inc)
                                                                     mock-albums)
                     beatmap.entities/sort-albums-by-artist-year-name (fn [albums]
                                                                       (swap! sort-calls inc)
                                                                       (is (= mock-albums albums))
                                                                       mock-sorted-albums)
-                    beatmap.csv-export/write-albums-to-csv (fn [albums & {:keys [filename]}]
+                    albums-csv/write-albums-to-csv (fn [albums & {:keys [filename]}]
                                                             (swap! csv-calls inc)
                                                             (is (= mock-sorted-albums albums))
                                                             (is (= "test_albums.csv" filename))
@@ -96,9 +101,9 @@
 
 (deftest process-apple-music-albums-filename-parameter-test
   (testing "uses provided filename parameter"
-    (with-redefs [beatmap.apple-music/get-albums-with-pagination (fn [& _] mock-albums)
+    (with-redefs [albums/get-albums-with-pagination (fn [& _] mock-albums)
                   beatmap.entities/sort-albums-by-artist-year-name (constantly mock-sorted-albums)
-                  beatmap.csv-export/write-albums-to-csv (fn [albums & {:keys [filename]}]
+                  albums-csv/write-albums-to-csv (fn [albums & {:keys [filename]}]
                                                           (is (= "custom_filename.csv" filename))
                                                           filename)]
       (ops/process-apple-music-albums "custom_filename.csv"))))

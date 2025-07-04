@@ -4,24 +4,31 @@ A Clojure application for interacting with Apple Music API, managing tokens secu
 
 ## Features
 
-- **Apple Music Integration**: Fetch user albums from Apple Music library
+- **Apple Music Integration**: Fetch user albums and playlists from Apple Music library
 - **Secure Token Management**: Layered configuration with environment variables
-- **CSV Export**: Export albums with artist, year, and album name to CSV
-- **Case-Insensitive Sorting**: Albums are sorted by artist, year, and album name, all case-insensitive
-- **Progress Tracking**: Real-time progress display during album fetching
+- **CSV Export**: Export albums and playlists to CSV format
+- **Smart Playlist Separation**: Automatically separate editable and non-editable playlists
+- **Case-Insensitive Sorting**: Albums and playlists are sorted alphabetically
+- **Progress Tracking**: Real-time progress display during data fetching
 - **Modular Architecture**: Clean separation of concerns with dedicated modules
 
 ## Project Structure
 
 ```
 src/beatmap/
-├── beatmap.clj      # Main application entry point
-├── apple_music.clj  # Apple Music API integration
-├── csv_export.clj   # CSV export functionality
-├── config.clj       # Configuration management
-├── tokens.clj       # Token validation and management
-├── entities.clj     # Domain entities and sorting logic
-└── operations.clj   # High-level album processing operations
+├── beatmap.clj                    # Main application entry point
+├── apple_music/
+│   ├── core.clj                   # Core API request logic and tokens
+│   ├── albums.clj                 # Album-related API functions
+│   └── playlists.clj              # Playlist-related API functions
+├── csv_export/
+│   ├── utils.clj                  # Common CSV utilities
+│   ├── albums.clj                 # Album CSV export functionality
+│   └── playlists.clj              # Playlist CSV export functionality
+├── config.clj                     # Configuration management
+├── tokens.clj                     # Token validation and management
+├── entities.clj                   # Domain entities and sorting logic
+└── operations.clj                 # High-level processing operations
 ```
 
 ## Installation
@@ -48,6 +55,25 @@ The application will:
 - Save them to `resources/catalog/albums.csv` with columns: Artist, Year, Album (sorted case-insensitively)
 - Display sample albums in the console
 
+### Available Commands
+
+```bash
+# Export albums to CSV
+make run-cmd CMD=albums
+# or
+clojure -M -m beatmap.beatmap albums
+
+# Export playlists to separate CSV files (editable/non-editable)
+make run-cmd CMD=playlists
+# or
+clojure -M -m beatmap.beatmap playlists
+
+# Show help
+make run-cmd CMD=help
+# or
+clojure -M -m beatmap.beatmap help
+```
+
 ### Configuration
 
 For detailed configuration instructions, see [Configuration Guide](doc/configuration.md).
@@ -66,13 +92,20 @@ The application uses three tokens:
 
 For detailed token usage, see [Tokens Usage Guide](doc/tokens-usage.md).
 
-### Available Commands
+### Running the Application
 
-Run the application:
+Run the application with default greeting:
 ```bash
 make run
 # or
 clojure -X:run-x
+```
+
+Run with specific command:
+```bash
+make run-cmd CMD=albums      # Export albums
+make run-cmd CMD=playlists   # Export playlists
+make run-cmd CMD=help        # Show help
 ```
 
 Setup configuration:
@@ -82,11 +115,15 @@ make setup-config
 
 Run tests:
 ```bash
+make test
+# or
 clojure -T:build test
 ```
 
 Build uberjar:
 ```bash
+make build
+# or
 clojure -T:build ci
 java -jar target/beatmap-0.1.0-SNAPSHOT.jar
 ```
@@ -97,31 +134,63 @@ java -jar target/beatmap-0.1.0-SNAPSHOT.jar
 
 When you run the application, you'll see output like:
 
+**For albums:**
 ```
-Hello, Clojure!
-Running beatmap application
 ✅ All tokens are configured
-🎵 Starting Apple Music integration...
-🎵 Fetching first 100 albums for main application...
-📄 Fetching page 1 (offset: 0)...
+🎵 Fetching albums from your Apple Music library...
+📄 Fetching albums page 1 (offset: 0)...
 ✅ Page 1 loaded: 25 albums
 📊 Total albums so far: 25
 ...
-💾 Saving 100 albums to CSV file...
-✅ Written 100 albums to resources/catalog/albums.csv
-✅ Successfully saved albums to: resources/catalog/albums.csv
+💾 Successfully saved albums to: resources/catalog/albums.csv
 📊 Sample of your albums:
    1. IDLES (2019) - A Beautiful Thing: IDLES Live at Le Bataclan
    2. Depeche Mode (1982) - A Broken Frame (Deluxe)
    3. Biffy Clyro (2020) - A Celebration of Endings
 ```
 
-### CSV Output Format
+**For playlists:**
+```
+✅ All tokens are configured
+🎵 Fetching playlists from your Apple Music library...
+📄 Fetching playlists page 1 (offset: 0)...
+✅ Page 1 loaded: 25 playlists
+📊 Total playlists so far: 25
+...
+✅ Written 54 playlists to resources/catalog/playlists_personal.csv
+✅ Written 45 playlists to resources/catalog/playlists_apple_music.csv
+📊 Summary:
+   Editable playlists: 54 -> resources/catalog/playlists_personal.csv
+   Non-editable playlists: 45 -> resources/catalog/playlists_apple_music.csv
+💾 Successfully saved playlists to separate files
+```
+
+### Output Formats
+
+#### CSV Output Format (Albums)
 
 The generated `resources/catalog/albums.csv` file contains:
 - **Artist**: Artist name
 - **Year**: Release year (or "Unknown" if not available)
 - **Album**: Album name
+
+#### CSV Output Format (Playlists)
+
+The application generates two separate CSV files:
+
+**`resources/catalog/playlists_personal.csv`** - Editable playlists (canEdit: true):
+- **Name**: Playlist name
+- **Track Count**: Number of tracks
+- **Curator**: Playlist curator (if available)
+- **Description**: Playlist description (if available)
+- **Last Modified**: Last modification date (if available)
+
+**`resources/catalog/playlists_apple_music.csv`** - Non-editable playlists (canEdit: false):
+- **Name**: Playlist name
+- **Track Count**: Number of tracks
+- **Curator**: Playlist curator (if available)
+- **Description**: Playlist description (if available)
+- **Last Modified**: Last modification date (if available)
 
 ### API Usage Note
 

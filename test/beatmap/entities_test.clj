@@ -100,4 +100,81 @@
           sorted (entities/sort-albums-by-artist-year-name albums)
           sorted-names (map #(get-in % [:attributes :name]) sorted)]
       (is (= ["Aerosmith" "Aerosmith" "Abbey Road"]
-             sorted-names))))) 
+             sorted-names)))))
+
+;; Playlist sorting tests
+
+(deftest sort-playlists-by-name-test
+  (testing "sorts playlists alphabetically by name"
+    (let [playlists [{:attributes {:name "Rock Classics"}}
+                     {:attributes {:name "Chill Vibes"}}
+                     {:attributes {:name "Workout Mix"}}
+                     {:attributes {:name "Jazz Collection"}}]
+          sorted (entities/sort-playlists-by-name playlists)
+          sorted-names (map #(get-in % [:attributes :name]) sorted)]
+      (is (= ["Chill Vibes" "Jazz Collection" "Rock Classics" "Workout Mix"]
+             sorted-names)))))
+
+(deftest sort-playlists-by-name-case-insensitive-test
+  (testing "sorts playlists case-insensitively by name"
+    (let [playlists [{:attributes {:name "rock classics"}}
+                     {:attributes {:name "Chill Vibes"}}
+                     {:attributes {:name "WORKOUT MIX"}}
+                     {:attributes {:name "jazz collection"}}]
+          sorted (entities/sort-playlists-by-name playlists)
+          sorted-names (map #(get-in % [:attributes :name]) sorted)]
+      (is (= ["Chill Vibes" "jazz collection" "rock classics" "WORKOUT MIX"]
+             sorted-names)))))
+
+(deftest sort-playlists-by-name-empty-test
+  (testing "returns empty list for empty input"
+    (let [sorted (entities/sort-playlists-by-name [])]
+      (is (= [] sorted)))))
+
+(deftest sort-playlists-by-name-single-playlist-test
+  (testing "returns single playlist unchanged"
+    (let [playlists [{:attributes {:name "Rock Classics"}}]
+          sorted (entities/sort-playlists-by-name playlists)]
+      (is (= playlists sorted)))))
+
+(deftest sort-playlists-by-name-missing-names-test
+  (testing "handles playlists with missing names"
+    (let [playlists [{:attributes {:name "Rock Classics"}}
+                     {:attributes {:name nil}}
+                     {:attributes {}}
+                     {:attributes {:name "Chill Vibes"}}]
+          sorted (entities/sort-playlists-by-name playlists)
+          sorted-names (map #(get-in % [:attributes :name]) sorted)]
+      ;; Playlists with names should come first, then nil for missing names
+      (is (= ["Chill Vibes" "Rock Classics" nil nil]
+             sorted-names)))))
+
+;; parse-release-date tests
+
+(deftest parse-release-date-valid-test
+  (testing "parses valid release dates correctly"
+    (is (= "2020" (entities/parse-release-date "2020-01-15")))
+    (is (= "1969" (entities/parse-release-date "1969-09-26")))
+    (is (= "1973" (entities/parse-release-date "1973-03-01")))
+    (is (= "2024" (entities/parse-release-date "2024-12-31")))))
+
+(deftest parse-release-date-nil-test
+  (testing "returns 'Unknown' for nil dates"
+    (is (= "Unknown" (entities/parse-release-date nil)))))
+
+(deftest parse-release-date-empty-test
+  (testing "returns 'Unknown' for empty dates"
+    (is (= "Unknown" (entities/parse-release-date "")))
+    (is (= "Unknown" (entities/parse-release-date "   ")))))
+
+(deftest parse-release-date-invalid-test
+  (testing "returns 'Unknown' for invalid dates"
+    (is (= "Unknown" (entities/parse-release-date "bad-date")))
+    (is (= "Unknown" (entities/parse-release-date "202")))
+    (is (= "Unknown" (entities/parse-release-date "not-a-date")))))
+
+(deftest parse-release-date-edge-cases-test
+  (testing "handles edge cases"
+    (is (= "2020" (entities/parse-release-date "2020")))  ; Just year
+    (is (= "2020" (entities/parse-release-date "2020-01")))  ; Year and month
+    (is (= "2020" (entities/parse-release-date "2020-01-15-extra")))))  ; Extra parts 

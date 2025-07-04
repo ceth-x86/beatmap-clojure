@@ -3,7 +3,8 @@
 # Default target
 help:
 	@echo "Available commands:"
-	@echo "  run        - Run the project and export albums to CSV"
+	@echo "  run        - Run the project with default greeting"
+	@echo "  run-cmd    - Run with command (albums, playlists, help)"
 	@echo "  test       - Run tests"
 	@echo "  build      - Build uberjar"
 	@echo "  run-jar    - Run the built JAR file"
@@ -19,6 +20,18 @@ help:
 # Run the project with default greeting
 run:
 	clojure -X:run-x
+
+# Run with command argument (albums, playlists, help)
+run-cmd:
+	@if [ -z "$(CMD)" ]; then \
+		echo "Usage: make run-cmd CMD=albums|playlists|help"; \
+		echo "Examples:"; \
+		echo "  make run-cmd CMD=albums"; \
+		echo "  make run-cmd CMD=playlists"; \
+		echo "  make run-cmd CMD=help"; \
+		exit 1; \
+	fi
+	clojure -M -m beatmap.beatmap $(CMD)
 
 # Run with custom name
 run-custom:
