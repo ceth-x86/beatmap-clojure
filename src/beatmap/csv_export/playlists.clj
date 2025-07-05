@@ -58,6 +58,11 @@
     {:editable editable-filename
      :non-editable non-editable-filename}))
 
+(defn export-playlists-to-csv
+  "Export playlists to separate CSV files based on canEdit field."
+  [playlists editable-filename non-editable-filename]
+  (write-playlists-separated-to-csv playlists editable-filename non-editable-filename))
+
 ;; Example usage:
 ;; (require '[beatmap.csv-export.playlists :as playlists-csv])
 ;; (playlists-csv/write-playlists-to-csv playlists :filename "my_playlists.csv")

@@ -5,6 +5,7 @@
             [beatmap.apple-music.playlists :as playlists]
             [beatmap.csv-export.albums :as albums-csv]
             [beatmap.csv-export.playlists :as playlists-csv]
+            [beatmap.csv-export.tracks :as tracks-csv]
             [clojure.java.io :as io]))
 
 ;; Mock data for testing
@@ -107,3 +108,30 @@
                                                           (is (= "custom_filename.csv" filename))
                                                           filename)]
       (ops/process-apple-music-albums "custom_filename.csv"))))
+
+
+
+(deftest process-apple-music-playlists-and-tracks-test
+  (testing "Process playlists and tracks combined"
+    (with-redefs [playlists/get-playlists-with-pagination (fn [] 
+                                                            [{:id "playlist-1" 
+                                                              :attributes {:name "Test Playlist" 
+                                                                          :canEdit true}}])
+                  playlists-csv/write-playlists-separated-to-csv (fn [playlists editable-filename non-editable-filename]
+                                                                   {:editable-count 1 
+                                                                    :non-editable-count 0})
+                  tracks-csv/process-all-playlist-tracks (fn [playlists tracks-fn & {:keys [output-dir]}]
+                                                          {:successful-count 1 
+                                                           :total-tracks 25 
+                                                           :output-dir output-dir})]
+      (let [result (ops/process-apple-music-playlists-and-tracks "test_editable.csv" "test_non_editable.csv" "test_tracks")]
+        (is (map? result))
+        (is (contains? result :playlists))
+        (is (contains? result :tracks))))))
+
+(deftest try-process-playlists-and-tracks-test
+  (testing "Process playlists and tracks with error handling"
+    (with-redefs [ops/process-apple-music-playlists-and-tracks (fn [editable-filename non-editable-filename tracks-output-dir]
+                                                               {:playlists {:editable-count 1} 
+                                                                :tracks {:successful-count 1}})]
+      (ops/try-process-playlists-and-tracks "test_editable.csv" "test_non_editable.csv" "test_tracks"))))

@@ -18,7 +18,7 @@
   (println "")
   (println "Available commands:")
   (println "  albums     - Export your albums to CSV file")
-  (println "  playlists  - Export playlists to separate CSV files (editable/non-editable)")
+  (println "  playlists  - Export playlists AND tracks from editable playlists")
   (println "  help       - Show this help message")
   (println "")
   (println "Examples:")
@@ -34,7 +34,7 @@
       (let [command (first (:args opts))]
         (case command
           "albums" (ops/try-process-albums "resources/catalog/albums.csv")
-          "playlists" (ops/try-process-playlists "resources/catalog/playlists_personal.csv" "resources/catalog/playlists_apple_music.csv")
+          "playlists" (ops/try-process-playlists-and-tracks "resources/catalog/playlists_personal.csv" "resources/catalog/playlists_apple_music.csv" "resources/catalog/playlists")
           "help" (display-help)
           (do
             (println "🎵 Welcome to Beatmap!")

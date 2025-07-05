@@ -3,6 +3,7 @@
             [beatmap.apple-music.playlists :as playlists]
             [beatmap.csv-export.albums :as albums-csv]
             [beatmap.csv-export.playlists :as playlists-csv]
+            [beatmap.csv-export.tracks :as tracks-csv]
             [beatmap.entities :as entities]))
 
 (defn process-apple-music-albums
@@ -25,24 +26,35 @@
     (catch Exception e
       (println (str "❌ Error during Apple Music integration: " (.getMessage e))))))
 
-(defn process-apple-music-playlists
-  "Fetch and save Apple Music playlists to separate CSV files based on canEdit field."
-  [editable-filename non-editable-filename]
-  (println "🎵 Fetching playlists from your Apple Music library...")
+(defn process-apple-music-playlists-and-tracks
+  "Fetch and save Apple Music playlists to separate CSV files AND tracks from editable playlists.
+   
+   This function combines playlist export and track export functionality:
+   1. Exports all playlists to separate CSV files (editable/non-editable)
+   2. Exports tracks from editable playlists to individual CSV files
+   
+   Args:
+     editable-filename: Filename for editable playlists CSV
+     non-editable-filename: Filename for non-editable playlists CSV
+     tracks-output-dir: Directory for playlist tracks CSV files
+   
+   Returns:
+     A map with summary information about both operations"
+  [editable-filename non-editable-filename tracks-output-dir]
+  (println "🎵 Fetching playlists and their tracks from your Apple Music library...")
   (let [playlists (playlists/get-playlists-with-pagination)]
     (if (empty? playlists)
       (println "⚠️  No playlists found in your library")
-      (let [        file-paths (playlists-csv/write-playlists-separated-to-csv 
-                    playlists 
-                    editable-filename
-                    non-editable-filename)]
-        (println (str "💾 Successfully saved playlists to separate files"))
-        file-paths))))
+      (let [playlist-results (playlists-csv/export-playlists-to-csv playlists editable-filename non-editable-filename)
+            tracks-summary (tracks-csv/export-playlist-tracks-to-csv playlists tracks-output-dir)]
+        (println (str "💾 Successfully exported playlists and tracks"))
+        {:playlists playlist-results
+         :tracks tracks-summary}))))
 
-(defn try-process-playlists
-  "Process Apple Music playlists with separation by canEdit field and error handling."
-  [editable-filename non-editable-filename]
+(defn try-process-playlists-and-tracks
+  "Process Apple Music playlists and tracks with error handling."
+  [editable-filename non-editable-filename tracks-output-dir]
   (try
-    (process-apple-music-playlists editable-filename non-editable-filename)
+    (process-apple-music-playlists-and-tracks editable-filename non-editable-filename tracks-output-dir)
     (catch Exception e
-      (println (str "❌ Error during Apple Music playlists separation: " (.getMessage e)))))) 
+      (println (str "❌ Error during Apple Music playlists and tracks processing: " (.getMessage e)))))) 

@@ -11,6 +11,8 @@ A Clojure application for interacting with Apple Music API, managing tokens secu
 - **Case-Insensitive Sorting**: Albums and playlists are sorted alphabetically
 - **Progress Tracking**: Real-time progress display during data fetching
 - **Modular Architecture**: Clean separation of concerns with dedicated modules
+- **Modular architecture**: API, CSV export, and business logic are separated into dedicated namespaces
+- **Comprehensive unit test coverage for all core modules (see `test/` directory)**
 
 ## Project Structure
 
@@ -63,10 +65,14 @@ make run-cmd CMD=albums
 # or
 clojure -M -m beatmap.beatmap albums
 
-# Export playlists to separate CSV files (editable/non-editable)
+# Export playlists AND tracks from editable playlists
 make run-cmd CMD=playlists
 # or
 clojure -M -m beatmap.beatmap playlists
+
+# This command will:
+# - Export all playlists to two CSV files (editable and non-editable)
+# - Export tracks from all editable playlists to separate CSV files (one per playlist)
 
 # Show help
 make run-cmd CMD=help
@@ -104,7 +110,7 @@ clojure -X:run-x
 Run with specific command:
 ```bash
 make run-cmd CMD=albums      # Export albums
-make run-cmd CMD=playlists   # Export playlists
+make run-cmd CMD=playlists   # Export playlists and tracks
 make run-cmd CMD=help        # Show help
 ```
 
@@ -206,3 +212,14 @@ _Feel free to remove or change the `LICENSE` file and remove or update this_
 _section of the `README.md` file!_
 
 Distributed under the Eclipse Public License version 1.0.
+
+## Testing
+
+The project includes unit tests for all major modules and functions.
+To run all tests:
+
+```bash
+make test
+# or
+clojure -T:build test
+```
