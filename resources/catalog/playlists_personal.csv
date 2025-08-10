@@ -1,7 +1,7 @@
 Playlist Name,Description,Last Modified,Can Edit
 "2024, shuffle",,2025-05-13T09:55:37Z,true
 "Alternative, Grunge",,2025-06-28T15:13:28Z,true
-"Alternative, Noise Rock",,2025-06-28T11:53:51Z,true
+"Alternative, Noise Rock","Noise rock is rock music that pushes dissonance, feedback, and abrasive texture to the front while keeping a solid rhythm section and recognizable song skeleton. Born from late-’70s No Wave and hardened in the ’80s–’90s Midwest scenes, it swaps melody for tension: detuned guitars, harsh distortion, clipped repetition, lurching grooves, vocals from deadpan to feral. It isn’t pure “noise”—the rock engine stays—yet it’s harsher than shoegaze, less dance-oriented than dance-punk, and less riff-metal than sludge. The appeal is catharsis and texture: controlled chaos at the edge of rock.",2025-08-10T12:52:31Z,true
 "Ambient, Dark Ambient",,2025-06-28T20:33:29Z,true
 Archive,,2025-02-20T00:05:07Z,true
 Deftones,,2025-07-16T10:05:24Z,true
@@ -24,7 +24,7 @@ Detroit Flow,,2025-04-28T09:54:21Z,true
 Marilyn Manson,,2025-02-21T12:52:44Z,true
 "Metal, Death, Melodic Death",,2025-06-25T13:45:30Z,true
 "Metal, Doom Metal",,2025-06-26T14:03:28Z,true
-"Metal, Gothic",,2025-07-05T11:38:12Z,true
+"Metal, Gothic Metal",,2025-08-09T15:14:29Z,true
 "Metal, Groove Metal",,2025-07-13T14:42:55Z,true
 "Metal, Heavy Metal",,2025-06-29T15:30:20Z,true
 "Metal, Industrial Metal",,2025-08-09T07:17:07Z,true
@@ -32,7 +32,8 @@ Marilyn Manson,,2025-02-21T12:52:44Z,true
 "Metal, Progressive Metal",Created from CSV import,2025-06-30T15:30:38Z,true
 "Metal, Trash Metal",,2025-06-28T17:05:32Z,true
 "Pop, Avant Pop","Avant-pop is a genre that blends experimental or avant-garde techniques with accessible pop music structures, creating artful yet melodic and unconventional songs.",2025-07-01T12:23:58Z,true
-"Pop, Dance Pop",,2025-06-27T10:19:56Z,true
+"Pop, Dance Pop",,2025-08-09T20:24:32Z,true
+"Pop, Electropop","Electropop is pop music built primarily from synthesizers, drum machines, and digital production, keeping classic pop structures (verse–chorus, big hooks) at the center. The sound is clean, punchy, and vocal-forward; guitars, if used, are secondary or textural. It differs from synthpop by favoring contemporary production over 1980s retro stylings, and from dance-pop/EDM by avoiding big house/techno drops and DJ-style builds. Compared with electroclash or indietronica, it’s less gritty or indie-band-oriented. Typical traits: mid-to-upbeat tempos, tight programmed rhythms, prominent synth-bass, and memorable toplines.",2025-08-10T12:28:25Z,true
 "Pop, Soft Rock",,2025-08-09T12:34:57Z,true
 "Post Punk, Gothic Rock",,2025-07-05T11:32:49Z,true
 "Progressive, Krautrock",,2025-07-02T05:40:36Z,true
