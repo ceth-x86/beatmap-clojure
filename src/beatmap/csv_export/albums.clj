@@ -20,8 +20,9 @@
   "Write albums to CSV file with columns: Artist, Year, Album.
    Returns the file path where CSV was written."
   [albums & {:keys [filename] :or {filename "albums.csv"}}]
-  (let [csv-rows (map album-to-csv-row albums)
-        csv-lines (map #(str/join "," (map csv-utils/escape-csv-field %)) csv-rows)
+  (let [header ["Artist" "Year" "Album"]
+        csv-rows (map album-to-csv-row albums)
+        csv-lines (map #(str/join "," (map csv-utils/escape-csv-field %)) (cons header csv-rows))
         csv-content (str/join "\n" csv-lines)
         file-path filename]
     (with-open [writer (io/writer file-path)]

@@ -38,6 +38,7 @@
       (try
         (albums-csv/write-albums-to-csv albums :filename test-file)
         (let [content (slurp test-file)]
+          (is (str/includes? content "Artist,Year,Album"))  ; Check header
           (is (str/includes? content "Test Artist,2020,Test Album"))
           (is (str/includes? content "No Date,Unknown,No Date Album"))
           (is (str/includes? content "Invalid,Unknown,Invalid Album")))
