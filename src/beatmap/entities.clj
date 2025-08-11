@@ -5,7 +5,7 @@
   "Parse release date string and extract year.
    Returns year as string or 'Unknown' if parsing fails."
   [date-str]
-  (if (and date-str (str/blank? date-str))
+  (if (or (nil? date-str) (str/blank? date-str))
     "Unknown"
     (try
       (let [year (subs date-str 0 4)]
