@@ -168,6 +168,8 @@ Animal ДжаZ,2015,Хранитель весны
 Animal ДжаZ,2018,Счастье
 Animal ДжаZ,2019,Время любить
 Animal ДжаZ,2023,Инь
+Animals As Leaders,2009,Animals as Leaders
+Animals As Leaders,2011,Weightless
 Animals As Leaders,2014,The Joy of Motion
 Animals As Leaders,2016,The Madness Of Many
 Animals As Leaders,2022,Parrhesia
@@ -1767,7 +1769,6 @@ Lacrimas Profundere,2016,Hope Is Here
 Lacrimas Profundere,2019,Bleeding the Stars
 Lacrimas Profundere,2022,How to Shroud Yourself with Night
 Lacrimosa,1995,Inferno
-Lacuna Coil,2025,Sleepless Empire
 Lady Blackbird,2020,Black Acid Soul
 Lady Blackbird,2024,Slang Spirituals
 Laibach,1994,Nato
@@ -1803,7 +1804,6 @@ Lane 8,2022,Lane 8 Fall 2022 Mixtape (DJ Mix)
 Lane 8,2024,Lane 8 Fall 2024 Mixtape (DJ Mix)
 Lane 8,2024,Lane 8 Winter 2024 Mixtape (DJ Mix)
 Lankum,2023,False Lankum
-Larry Heard,1994,"Sceneries Not Songs, Volume 1"
 LCD Soundsystem,2007,Sound of Silver
 LCD Soundsystem,2010,This Is Happening
 Lebanon Hanover,2012,The World Is Getting Colder
@@ -2187,7 +2187,6 @@ Mystery,2017,Second Home
 Mystery,2018,Lies and Butterflies
 Mötley Crüe,1981,From The Beginning
 Mötley Crüe,1983,Shout At The Devil
-Nailbomb,1994,Point Blank
 NAILS,2024,Every Bridge Burning
 Ne Obliviscaris,2017,Urn
 Ne Obliviscaris,2022,Exul
@@ -2198,7 +2197,6 @@ Neal Morse,2024,"The Restoration - Joseph, Pt. Two"
 Neal Morse,Unknown,It's Not Too Late
 Neal Morse,Unknown,Neal Morse
 Neal Morse,Unknown,Testimony
-Necromance,1999,Wiederkhekr Der Schmerzen
 Nell Smith & The Flaming Lips,2021,Where the Viaduct Looms
 Neurosis,1988,Pain of Mind
 Neurosis,1990,The Word as Law (Remastered)
@@ -2273,7 +2271,6 @@ Nirvana,1991,Nevermind
 Nirvana,1993,In Utero (20th Anniversary Edition)
 Nitzer Ebb,1990,Showtime
 Nitzer Ebb,1991,Ebbhead
-No Doubt,2001,Rock Steady (Bonus Track Version)
 No-Man,1994,Flowermouth
 No-Man,2002,Returning Jesus (Deluxe)
 No-Man,2003,Together We're Stranger
@@ -2761,6 +2758,7 @@ Russian Circles,2013,Memorial
 Russian Circles,2016,Guidance
 Russian Circles,2019,Blood Year
 Russian Circles,2022,Gnosis
+RY X,2016,Dawn
 Ryan Adams,2000,Heartbreaker
 Saga,1983,Heads or Tales
 Saga,1985,Behaviour
@@ -3028,7 +3026,6 @@ Summoning,2013,Old Mornings Dawn
 Sunflower Bean,2025,Mortal Primetime
 Sunny Day Real Estate,1994,Diary (2009 Remastered Version) [Bonus Track Version]
 Supertramp,1974,Crime of the Century
-Suzanne Vega,1987,Solitude Standing
 Svalbard,2023,The Weight Of The Mask
 Swallow the Sun,2015,"Songs from the North I, II & III"
 Swallow the Sun,2019,When a Shadow Is Forced Into the Light
@@ -3203,9 +3200,13 @@ The Devil Wears Prada,2011,Dead Throne
 The Devil Wears Prada,2019,The Act
 The Devil Wears Prada,2022,Color Decay (Deluxe)
 The Devin Townsend Band,2001,Accelerated Evolution
+The Dillinger Escape Plan,1998,Under the Running Board
 The Dillinger Escape Plan,1999,Calculating Infinity
 The Dillinger Escape Plan,2004,Miss Machine
 The Dillinger Escape Plan,2007,Ire Works
+The Dillinger Escape Plan,2010,Option Paralysis
+The Dillinger Escape Plan,2013,One Of Us Is The Killer
+The Dillinger Escape Plan,2016,Dissociation
 The Faceless,2008,Planetary Duality
 The Faceless,2012,Autotheism
 The Fall of Troy,2003,The Fall of Troy
@@ -3406,7 +3407,6 @@ The Used,2004,In Love and Death
 The Velvet Underground & Nico,1966,The Velvet Underground & Nico (45th Anniversary Edition)
 The Verve,1993,A Storm In Heaven
 The Verve,1997,Urban Hymns (Remastered 2016)
-The Walkmen,2002,Everyone Who Pretended to Like Me Is Gone
 The Walkmen,2004,Bows + Arrows
 The War on Drugs,2011,Slave Ambient
 The War on Drugs,2014,Lost in the Dream
@@ -3493,7 +3493,6 @@ toe,2005,The Book About My Idle Plot On A Vague Anxiety
 toe,2006,New Sentimentality - EP
 toe,2024,NOW I SEE THE LIGHT
 Tom Meighan,2023,The Reckoning
-Tom Odell,2025,A Wonderful Life
 TOOL,1996,Ænima
 TOOL,2001,Lateralus
 TOOL,2006,"10,000 Days"
@@ -3528,6 +3527,8 @@ Tricky,2010,Mixed Race
 Tricky,2013,False Idols (Bonus Track Version)
 Tricky,2014,Adrian Thaws
 Tristania,1997,Midwintertears
+Trivium,2013,Vengeance Falls (2023 Remaster)
+Trivium,2021,In The Court Of The Dragon
 Trna,2021,Istok
 Tropical Fuck Storm,2018,A Laughing Death in Meatspace
 Tropical Fuck Storm,2021,Deep States
@@ -3627,7 +3628,6 @@ Verschillende artiesten,2024,Kompakt: Total 24
 Verschillende artiesten,2024,The Shape of Punk to Come Obliterated
 Verschillende artiesten,2024,КЛЮЧИ ОТ ДОМА
 Viagra Boys,2025,viagr aboys
-Vladislav Delay,2001,Anima
 VNV Nation,1995,Advance and Follow V2
 VNV Nation,1998,Praise the Fallen
 VNV Nation,2018,Noire
@@ -3650,8 +3650,11 @@ Warpaint,2014,Warpaint
 Watain,2007,Sworn to the Dark
 Watain,2022,The Agony & Ecstasy of Watain
 Wave Arising,2024,(The) Rooted Sky
+Wax Tailor,2005,Tales of the Forgotten Melodies
+Wax Tailor,2007,Hope & Sorrow
 Wax Tailor,2009,B - Sides & Remixes
 Wax Tailor,2012,Dusty Rainbow from the Dark (Extended with Instrumentals)
+Wax Tailor,2014,Phonovisions Symphonic Orchestra
 Wax Tailor,2021,The Shadow of Their Suns (Extended with Instrumentals)
 Wax Tailor,2023,Fishing for Accidents (Extended with Instrumentals)
 We Came From Wolves,2025,In Another Life
@@ -3677,21 +3680,18 @@ White Lies,2016,Friends (Deluxe Version)
 White Lies,2019,Five V2
 White Lies,2022,As I Try Not To Fall Apart (Bonus Edition)
 White Lies,2025,Night Light
-White Ring,2018,Gate of Grief
 White Ward,2022,False Light
 Whitechapel,2012,Whitechapel
 Whitechapel,2016,Mark of the Blade
 Whitechapel,2019,The Valley
 Whitechapel,2021,Kin
 Whitechapel,2025,Hymns in Dissonance
-Wilco,2002,Yankee Hotel Foxtrot (Expanded Edition)
 William Basinski,2002,The Disintegration Loops (Remastered)
 William Basinski,2003,Melancholia
 Wobbler,2017,From Silence to Somewhere
 Wolf Alice,2017,Visions of a Life
 Wolf Alice,2021,Blue Weekend
 Wolf Alice,Unknown,The Clearing
-Wolfheart,2024,Draconian Darkness
 Wolverine,2003,Cold Light of Monday
 Wolves in the Throne Room,2007,Two Hunters
 Wolves in the Throne Room,2011,Celestial Lineage
