@@ -1,7 +1,8 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.12.0"}
         clj-http/clj-http {:mvn/version "3.12.3"}
-        cheshire/cheshire {:mvn/version "5.12.0"}}
+        cheshire/cheshire {:mvn/version "5.12.0"}
+        org.clojure/data.json {:mvn/version "2.5.0"}}
  :aliases
  {:run-m {:main-opts ["-m" "beatmap.beatmap"]}
   :run-x {:ns-default beatmap.beatmap

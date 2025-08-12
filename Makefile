@@ -24,11 +24,12 @@ run:
 # Run with command argument (albums, playlists, help)
 run-cmd:
 	@if [ -z "$(CMD)" ]; then \
-		echo "Usage: make run-cmd CMD=\"albums|playlists|generate [subcommand]|help\""; \
+		echo "Usage: make run-cmd CMD=\"albums|playlists|generate [subcommand]|enrich [subcommand]|help\""; \
 		echo "Examples:"; \
 		echo "  make run-cmd CMD=albums"; \
 		echo "  make run-cmd CMD=playlists"; \
 		echo "  make run-cmd CMD=\"generate artists\""; \
+		echo "  make run-cmd CMD=\"enrich artist_by_countries\""; \
 		echo "  make run-cmd CMD=help"; \
 		exit 1; \
 	fi

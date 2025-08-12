@@ -151,4 +151,29 @@
           (is (str/includes? artists-content "The Beatles")))
         (finally
           (when (.exists (io/file albums-file)) (io/delete-file albums-file))
-          (when (.exists (io/file artists-file)) (io/delete-file artists-file)))))))
+          (when (.exists (io/file artists-file)) (io/delete-file artists-file))))))
+
+(deftest test-process-enrich-artist-by-countries-mocked
+  (testing "Process enrich artist by countries with mocked ChatGPT"
+    (let [artists-file "test_artists_enrich_mock.csv"
+          enriched-file "test-output/enriched_artists_mock.csv"
+          artists-content "Artist\nThe Beatles\nAC/DC\nU2"]
+      (try
+        (spit artists-file artists-content)
+        ;; Mock the ChatGPT integration
+        (with-redefs [beatmap.chatgpt.artists/get-artist-countries
+                      (fn [artists & {:keys [batch-size]}]
+                        {"The Beatles" "United Kingdom"
+                         "AC/DC" "Australia" 
+                         "U2" "Ireland"})]
+          (ops/try-process-enrich-artist-by-countries 
+           :artists-file artists-file 
+           :enriched-file enriched-file)
+          (let [enriched-content (slurp enriched-file)]
+            (is (str/includes? enriched-content "Artist,Country"))  ; Check header
+            (is (str/includes? enriched-content "The Beatles,United Kingdom"))
+            (is (str/includes? enriched-content "AC/DC,Australia"))
+            (is (str/includes? enriched-content "U2,Ireland"))))
+        (finally
+          (when (.exists (io/file artists-file)) (io/delete-file artists-file))
+          (when (.exists (io/file enriched-file)) (io/delete-file enriched-file))))))))
