@@ -1,8 +1,8 @@
-(ns beatmap.csv-export.albums-test
+(ns beatmap.csv.albums-test
   (:require [clojure.test :refer :all]
             [clojure.java.io :as io]
             [clojure.string :as str]
-            [beatmap.csv-export.albums :as albums-csv]))
+            [beatmap.csv.albums :as albums-csv]))
 
 (def sample-album
   {:id "1"
@@ -44,3 +44,23 @@
           (is (str/includes? content "Invalid,Unknown,Invalid Album")))
         (finally
           (io/delete-file test-file))))))
+
+(deftest test-parse-csv-line
+  (testing "Parse CSV line with various formats"
+    (is (= ["Artist" "Year" "Album"] (albums-csv/parse-csv-line "Artist,Year,Album")))
+    (is (= ["The Beatles" "1969" "Abbey Road"] (albums-csv/parse-csv-line "The Beatles,1969,Abbey Road")))
+    (is (= ["Artist, Name" "2020" "Album \"Title\""] (albums-csv/parse-csv-line "\"Artist, Name\",2020,\"Album \"\"Title\"\"\"")))
+    (is (= [] (albums-csv/parse-csv-line "")))
+    (is (= [] (albums-csv/parse-csv-line "   ")))))
+
+(deftest test-read-albums-csv
+  (testing "Read albums from CSV file and extract unique artists"
+    (let [test-file "test_read_albums.csv"
+          csv-content "Artist,Year,Album\nThe Beatles,1969,Abbey Road\nPink Floyd,1973,Dark Side of the Moon\nThe Beatles,1970,Let It Be\nAerosmith,1973,Aerosmith"]
+      (try
+        (spit test-file csv-content)
+        (let [artists (albums-csv/read-albums-csv test-file)]
+          (is (= ["Aerosmith" "Pink Floyd" "The Beatles"] artists)))
+        (finally
+          (io/delete-file test-file))))))
+

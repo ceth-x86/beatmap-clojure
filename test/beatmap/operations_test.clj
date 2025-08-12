@@ -3,10 +3,11 @@
             [beatmap.operations :as ops]
             [beatmap.apple-music.albums :as albums]
             [beatmap.apple-music.playlists :as playlists]
-            [beatmap.csv-export.albums :as albums-csv]
-            [beatmap.csv-export.playlists :as playlists-csv]
-            [beatmap.csv-export.tracks :as tracks-csv]
-            [clojure.java.io :as io]))
+            [beatmap.csv.albums :as albums-csv]
+            [beatmap.csv.playlists :as playlists-csv]
+            [beatmap.csv.tracks :as tracks-csv]
+            [clojure.java.io :as io]
+            [clojure.string :as str]))
 
 ;; Mock data for testing
 (def mock-albums
@@ -135,3 +136,19 @@
                                                                {:playlists {:editable-count 1} 
                                                                 :tracks {:successful-count 1}})]
       (ops/try-process-playlists-and-tracks "test_editable.csv" "test_non_editable.csv" "test_tracks"))))
+
+(deftest test-generate-artists-from-albums
+  (testing "Generate artists.csv from albums.csv"
+    (let [albums-file "test_albums_input.csv"
+          artists-file "test-output/generated/artists.csv"
+          albums-content "Artist,Year,Album\nThe Beatles,1969,Abbey Road\nPink Floyd,1973,Dark Side of the Moon\nThe Beatles,1970,Let It Be"]
+      (try
+        (spit albums-file albums-content)
+        (ops/try-process-generate-artists :albums-file albums-file :artists-file artists-file)
+        (let [artists-content (slurp artists-file)]
+          (is (str/includes? artists-content "Artist"))  ; Check header
+          (is (str/includes? artists-content "Pink Floyd"))
+          (is (str/includes? artists-content "The Beatles")))
+        (finally
+          (when (.exists (io/file albums-file)) (io/delete-file albums-file))
+          (when (.exists (io/file artists-file)) (io/delete-file artists-file)))))))

@@ -1,6 +1,6 @@
-(ns beatmap.csv-export.tracks-test
+(ns beatmap.csv.tracks-test
   (:require [clojure.test :refer :all]
-            [beatmap.csv-export.tracks :as tracks]
+            [beatmap.csv.tracks :as tracks]
             [clojure.java.io :as io]))
 
 (deftest track-to-csv-row-test

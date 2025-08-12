@@ -1,4 +1,4 @@
-(ns beatmap.csv-export.utils
+(ns beatmap.csv.utils
   (:require [clojure.string :as str]))
 
 (defn escape-csv-field

@@ -4,7 +4,7 @@
 help:
 	@echo "Available commands:"
 	@echo "  run        - Run the project with default greeting"
-	@echo "  run-cmd    - Run with command (albums, playlists, help)"
+	@echo "  run-cmd    - Run with command (albums, playlists, generate, help)"
 	@echo "  test       - Run tests"
 	@echo "  build      - Build uberjar"
 	@echo "  run-jar    - Run the built JAR file"
@@ -24,10 +24,11 @@ run:
 # Run with command argument (albums, playlists, help)
 run-cmd:
 	@if [ -z "$(CMD)" ]; then \
-		echo "Usage: make run-cmd CMD=albums|playlists|help"; \
+		echo "Usage: make run-cmd CMD=\"albums|playlists|generate [subcommand]|help\""; \
 		echo "Examples:"; \
 		echo "  make run-cmd CMD=albums"; \
 		echo "  make run-cmd CMD=playlists"; \
+		echo "  make run-cmd CMD=\"generate artists\""; \
 		echo "  make run-cmd CMD=help"; \
 		exit 1; \
 	fi

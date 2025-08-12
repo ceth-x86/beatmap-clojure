@@ -1,8 +1,8 @@
-(ns beatmap.csv-export.playlists
+(ns beatmap.csv.playlists
   (:require [clojure.string :as str]
             [clojure.java.io :as io]
             [beatmap.entities :as entities]
-            [beatmap.csv-export.utils :as csv-utils]))
+            [beatmap.csv.utils :as csv-utils]))
 
 
 
@@ -64,6 +64,6 @@
   (write-playlists-separated-to-csv playlists editable-filename non-editable-filename))
 
 ;; Example usage:
-;; (require '[beatmap.csv-export.playlists :as playlists-csv])
+;; (require '[beatmap.csv.playlists :as playlists-csv])
 ;; (playlists-csv/write-playlists-to-csv playlists :filename "my_playlists.csv")
 ;; (playlists-csv/write-playlists-separated-to-csv playlists) 

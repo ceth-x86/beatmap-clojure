@@ -74,6 +74,11 @@ clojure -M -m beatmap.beatmap playlists
 # - Export all playlists to two CSV files (editable and non-editable)
 # - Export tracks from all editable playlists to separate CSV files (one per playlist)
 
+# Generate derived data from existing files
+make run-cmd CMD="generate artists"
+# or
+clojure -M -m beatmap.beatmap generate artists
+
 # Show help
 make run-cmd CMD=help
 # or

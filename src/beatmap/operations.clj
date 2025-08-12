@@ -1,10 +1,12 @@
 (ns beatmap.operations
   (:require [beatmap.apple-music.albums :as albums]
             [beatmap.apple-music.playlists :as playlists]
-            [beatmap.csv-export.albums :as albums-csv]
-            [beatmap.csv-export.playlists :as playlists-csv]
-            [beatmap.csv-export.tracks :as tracks-csv]
-            [beatmap.entities :as entities]))
+            [beatmap.csv.albums :as albums-csv]
+            [beatmap.csv.playlists :as playlists-csv]
+            [beatmap.csv.tracks :as tracks-csv]
+            [beatmap.csv.artists :as artists-csv]
+            [beatmap.entities :as entities]
+            [clojure.java.io :as io]))
 
 (defn process-apple-music-albums
   "Fetch, sort, and save Apple Music albums to CSV."
@@ -57,4 +59,31 @@
   (try
     (process-apple-music-playlists-and-tracks editable-filename non-editable-filename tracks-output-dir)
     (catch Exception e
-      (println (str "❌ Error during Apple Music playlists and tracks processing: " (.getMessage e)))))) 
+      (println (str "❌ Error during Apple Music playlists and tracks processing: " (.getMessage e))))))
+
+(defn process-generate-artists
+  "Generate artists CSV from existing albums CSV."
+  [& {:keys [albums-file artists-file] 
+      :or {albums-file "resources/catalog/albums.csv" 
+           artists-file "resources/catalog/generated/artists.csv"}}]
+  (println (str "📖 Reading albums from " albums-file "..."))
+  (let [artists (albums-csv/read-albums-csv albums-file)]
+    (if (empty? artists)
+      (println "⚠️  No artists found in albums file")
+      (do
+        (println (str "🎨 Found " (count artists) " unique artists"))
+        ;; Create output directory if it doesn't exist
+        (let [output-dir (-> artists-file io/file .getParent)]
+          (when output-dir
+            (.mkdirs (io/file output-dir))))
+        (artists-csv/write-artists-to-csv artists :filename artists-file)))))
+
+(defn try-process-generate-artists
+  "Process generate artists with error handling."
+  [& {:keys [albums-file artists-file] 
+      :or {albums-file "resources/catalog/albums.csv" 
+           artists-file "resources/catalog/generated/artists.csv"}}]
+  (try
+    (process-generate-artists :albums-file albums-file :artists-file artists-file)
+    (catch Exception e
+      (println (str "❌ Error generating artists: " (.getMessage e))))))

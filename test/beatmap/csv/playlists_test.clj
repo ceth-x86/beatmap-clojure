@@ -1,6 +1,6 @@
-(ns beatmap.csv-export.playlists-test
+(ns beatmap.csv.playlists-test
   (:require [clojure.test :refer :all]
-            [beatmap.csv-export.playlists :as playlists-csv]
+            [beatmap.csv.playlists :as playlists-csv]
             [beatmap.entities :as entities]
             [clojure.java.io :as io]
             [clojure.string :as str]))
