@@ -1,13 +1,13 @@
 Playlist Name,Description,Last Modified,Can Edit
 "2024, shuffle",,2025-05-13T09:55:37Z,true
 "Alternative, Grunge",,2025-08-10T19:33:26Z,true
-"Alternative, Noise Rock","Noise rock is rock music that pushes dissonance, feedback, and abrasive texture to the front while keeping a solid rhythm section and recognizable song skeleton. Born from late-’70s No Wave and hardened in the ’80s–’90s Midwest scenes, it swaps melody for tension: detuned guitars, harsh distortion, clipped repetition, lurching grooves, vocals from deadpan to feral. It isn’t pure “noise”—the rock engine stays—yet it’s harsher than shoegaze, less dance-oriented than dance-punk, and less riff-metal than sludge. The appeal is catharsis and texture: controlled chaos at the edge of rock.",2025-08-11T12:53:56Z,true
+"Alternative, Noise Rock","Noise rock is rock music that pushes dissonance, feedback, and abrasive texture to the front while keeping a solid rhythm section and recognizable song skeleton. Born from late-’70s No Wave and hardened in the ’80s–’90s Midwest scenes, it swaps melody for tension: detuned guitars, harsh distortion, clipped repetition, lurching grooves, vocals from deadpan to feral. It isn’t pure “noise”—the rock engine stays—yet it’s harsher than shoegaze, less dance-oriented than dance-punk, and less riff-metal than sludge. The appeal is catharsis and texture: controlled chaos at the edge of rock.",2025-08-20T09:55:14Z,true
 "Ambient, Dark Ambient","Dark ambient centers on sustained drones, sub-bass rumbles, and granular field recordings arranged to create cavernous, oppressive atmospheres rather than melody or rhythm. Percussion is minimal to absent; harmony is ambiguous, often dissonant or microtonal, with textures drawn from environmental sound, analog hum, and restrained industrial or ritual timbres. Unlike industrial noise, it avoids harsh rhythmic assault; unlike classic ambient, it leans into darkness, tension, and psychological unease—suggesting deserted architecture, cosmic voids, or subterranean spaces.",2025-08-11T15:08:10Z,true
 Archive,,2025-02-20T00:05:07Z,true
 Deftones,,2025-07-16T10:05:24Z,true
 Detroit Flow,,2025-04-28T09:54:21Z,true
 "Detroit Flow, Post Rock Edition",,2025-04-28T09:54:32Z,true
-"Electronic, Classic Electro",,2025-07-02T18:16:23Z,true
+"Electronic, Classic Electro",,2025-08-19T06:39:00Z,true
 "Electronic, Jungle",,2025-08-14T07:29:53Z,true
 "Hardcore, Hardcore Punk",Created from CSV import,2025-06-30T15:44:10Z,true
 "Hardcore, Mathcore",Created from CSV import,2025-06-30T15:04:28Z,true
@@ -25,7 +25,7 @@ Detroit Flow,,2025-04-28T09:54:21Z,true
 Marilyn Manson,,2025-02-21T12:52:44Z,true
 "Metal, Death, Melodic Death",,2025-06-25T13:45:30Z,true
 "Metal, Death, Technical",,2025-08-14T07:30:53Z,true
-"Metal, Doom Metal",,2025-06-26T14:03:28Z,true
+"Metal, Doom Metal",,2025-08-17T14:28:59Z,true
 "Metal, Heavy Metal",,2025-08-11T13:52:25Z,true
 "Metal, Industrial Metal",,2025-08-14T06:36:26Z,true
 "Metal, Metalcore",,2025-08-09T07:17:42Z,true
@@ -45,6 +45,7 @@ Marilyn Manson,,2025-02-21T12:52:44Z,true
 "Punk, Pop Punk",,2025-06-30T08:08:01Z,true
 "Rock, Arena Rock",,2025-08-14T07:47:56Z,true
 "Rock, Avant-Garde Rock",,2025-07-11T09:34:10Z,true
+"Rock, Classic Rock",,2025-08-17T14:16:22Z,true
 "Rock, Hard Rock",,2025-06-30T12:35:32Z,true
 shuffle,,2025-08-14T07:48:27Z,true
 singles,,2025-07-06T07:52:59Z,true
