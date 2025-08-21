@@ -16,8 +16,6 @@ ALEX & TOKYO ROSE,United States
 AMENRA,Belgium
 ATL,United States
 Aara,Switzerland
-Abigail Williams,United States
-Acid Bath,United States
 Actress,United Kingdom
 Aerosmith,United States
 Agalloch,United States
@@ -57,6 +55,8 @@ Anglagard,Sweden
 Animal Collective,United States
 Animal ДжаZ,Russia
 Animals As Leaders,United States
+Anneke van Giersbergen,Netherlands
+Anneke van Giersbergen & Agua de Annique,Netherlands
 Annihilator,Canada
 Annisokay,Germany
 Ansome,United Kingdom
@@ -208,7 +208,6 @@ Candlebox,United States
 Candlemass,Sweden
 Carach Angren,Netherlands
 Carcass,United Kingdom
-Carly Rae Jepsen,Canada
 Carnifex,United States
 Caroline Polachek,United States
 Casey,United Kingdom
@@ -286,6 +285,7 @@ David Douglas & Applescal,Netherlands
 David Gilmour,United Kingdom
 David Sylvian,United Kingdom
 Dawn Of Solace,Finland
+Daïtro,France
 Dead By April,Sweden
 Dead Can Dance,Australia
 Deadsoul Tribe,Austria
@@ -310,7 +310,6 @@ Deicide,United States
 Delerium,Canada
 Demians,France
 Depeche Mode,United Kingdom
-Destroyer,Canada
 DevilDriver,United States
 Devin Townsend,Canada
 Devin Townsend Project,Canada
@@ -324,7 +323,6 @@ Disillusion,Germany
 Dismember,Sweden
 Disturbed,United States
 Ditz,United Kingdom
-"""Dom Salvador, Adrian Younge & Ali Shaheed Muhammad""",Unknown
 Don Henley,United States
 DoomCannon,United Kingdom
 Dormant Ordeal,Poland
@@ -385,8 +383,6 @@ Fear Factory,United States
 Feeder,United Kingdom
 Fen,United Kingdom
 Fever Ray,Sweden
-Fields of the Nephilim,United Kingdom
-Filter,United States
 Fish,United Kingdom
 Fleetwood Mac,United Kingdom
 Fleshgod Apocalypse,Italy
@@ -403,7 +399,6 @@ Followed By Ghosts,United States
 Fontaines D.C.,Ireland
 Foo Fighters,United States
 For Your Health,United States
-Foreigner,United Kingdom
 Forest Swords,United Kingdom
 Foster the People,United States
 Four Tet,United Kingdom
@@ -421,13 +416,10 @@ Fugazi,United States
 GOJIRA,France
 Gaerea,Portugal
 Galahad,United Kingdom
-Gang of Four,United Kingdom
 Garbage,United States
-Garmarna,Sweden
 Gas,Germany
 Gazpacho,Norway
 Geese,United States
-Gehenna,Norway
 Genesis,United Kingdom
 Gesaffelstein,France
 Gescom,United Kingdom
@@ -445,6 +437,7 @@ Gogol Bordello,United States
 Gomma,Germany
 Gong,France
 Gorillaz,United Kingdom
+Gospel,United States
 Gosub,United States
 Grails,United States
 Gravity Kills,United States
@@ -509,20 +502,21 @@ Iron Maiden,United Kingdom
 Isildurs Bane & Steve Hogarth,Sweden
 Jack White,United States
 James Blake,United Kingdom
-James Holden,United Kingdom
 James LaBrie,Canada
 Jamie xx,United Kingdom
 Jane's Addiction,United States
-Jeff Beck,United Kingdom
 Jerry Cantrell,United States
+Jesu,United Kingdom
 Jethro Tull,United Kingdom
 Jimi Tenor,Finland
 Jimmy Eat World,United States
+Jinjer,Ukraine
 Job for a Cowboy,United States
 Joe Satriani,United States
 Joel Ross,United States
 John Coltrane,United States
 John Frusciante,United States
+John Frusciante & Josh Klinghoffer,United States
 Jon Hopkins,United Kingdom
 Jonas Kopp,Argentina
 Jorn,Norway
@@ -573,6 +567,7 @@ LESNIK,Unknown
 LINKIN PARK,United States
 LIVE,United States
 La Dispute,United States
+La quiete,Italy
 Lacrimas Profundere,Germany
 Lacrimosa,Germany
 Lady Blackbird,United States
@@ -629,6 +624,7 @@ Madonna,United States
 Madrugada,Norway
 Malevolence,United Kingdom
 Man With No Name,United Kingdom
+Manchester Orchestra,United States
 """Mandy, Indiana""",Unknown
 Manic Street Preachers,United Kingdom
 Mantar,Germany
@@ -653,7 +649,6 @@ Mazzy Star,United States
 Megadeth,United States
 Melt Yourself Down,United Kingdom
 Meltt,Canada
-Melvins,United States
 Mentallo & the Fixer,United States
 Mesh,United Kingdom
 Meshuggah,Sweden
@@ -711,6 +706,7 @@ Myrkur,Denmark
 Mystery,Canada
 Mötley Crüe,United States
 NAILS,United States
+Nazareth,United Kingdom
 Ne Obliviscaris,Australia
 Neal Morse,United States
 Nell Smith & The Flaming Lips,United States
@@ -754,7 +750,6 @@ Olhava,Russia
 Omar Rodriguez-Lopez,United States
 Omar Rodríguez-López Quintet,United States
 On Thorns I Lay,Greece
-Oneohtrix Point Never,United States
 Opeth,Sweden
 Orbit Culture,Sweden
 Orchestral Manoeuvres In the Dark,United Kingdom
@@ -795,7 +790,6 @@ Persefone,Andorra
 Perturbator,France
 Pestilence,Netherlands
 Pet Shop Boys,United Kingdom
-Pete Townshend,United Kingdom
 Peter Gabriel,United Kingdom
 Peter Murphy,United Kingdom
 Pharoah Sanders,United States
@@ -821,7 +815,6 @@ Protomartyr,United States
 Psychotic Waltz,United States
 Pulp,United Kingdom
 Pure Reason Revolution,United Kingdom
-Quadeca,United States
 Queen,United Kingdom
 Queens of the Stone Age,United States
 Queensrÿche,United States
@@ -833,7 +826,7 @@ ROME,Luxembourg
 RPWL,Germany
 RY X,Australia
 Radiohead,United Kingdom
-Rage,Germany
+Raein,Italy
 Rage Against the Machine,United States
 Rainbow,United Kingdom
 Rammstein,Germany
@@ -863,7 +856,6 @@ Rosetta,United States
 Rotting Christ,Greece
 Roxy Music,United Kingdom
 Royal Blood,United Kingdom
-Royal Hunt,Denmark
 Rush,Canada
 Russian Circles,United States
 Ryan Adams,United States
@@ -921,9 +913,7 @@ Slowdive,United Kingdom
 Snarky Puppy,United States
 Sneaker Pimps,United Kingdom
 Snow Patrol,United Kingdom
-Sodom,Germany
 Soen,Sweden
-Soft Ffog,Norway
 Soilwork,Sweden
 Solar Fake,Germany
 Solar Fields,Sweden
@@ -931,10 +921,8 @@ Sonic Youth,United States
 Sonny Rollins,United States
 Sons Of Kemet,United Kingdom
 Soul Asylum,United States
-Soulfly,United States
 Soundgarden,United States
 Soup,Norway
-Spandau Ballet,United Kingdom
 Spoon,United States
 Spotlights,United States
 Squarepusher,United Kingdom
@@ -955,14 +943,11 @@ Sting,United Kingdom
 Stone Sour,United States
 Stone Temple Pilots,United States
 Stratovarius,Finland
-Subliminal Fear,Italy
 Suede,United Kingdom
 Sufjan Stevens,United States
 Suicide Silence,United States
 Summoning,Austria
 Sunflower Bean,United States
-Sunny Day Real Estate,United States
-Supertramp,United Kingdom
 Svalbard,United Kingdom
 Swallow the Sun,Finland
 Swans,United States
@@ -974,8 +959,6 @@ Sólstafir,Iceland
 TEMIC,International
 TOOL,United States
 TV on the Radio,United States
-Taake,Norway
-Tactical Sekt,United States
 Taking Back Sunday,United States
 Tale Of Us,Italy
 Talk Talk,United Kingdom
@@ -984,7 +967,6 @@ Tame Impala,Australia
 Tangerine Dream,Germany
 Team Sleep,United States
 Tears for Fears,United Kingdom
-Teeth of the Sea,United Kingdom
 Temple of the Dog,United States
 Tenhi,Finland
 Tequilajazzz,Russia
@@ -1016,9 +998,7 @@ The Devin Townsend Band,Canada
 The Dillinger Escape Plan,United States
 The Faceless,United States
 The Fall of Troy,United States
-The Feelies,United States
 The Flaming Lips,United States
-The Flashbulb,United States
 The Flower Kings,Sweden
 The Future Sound of London,United Kingdom
 The Gathering,Netherlands
@@ -1073,7 +1053,6 @@ The Tear Garden,Canada
 The The,United Kingdom
 The Third and the Mortal,Norway
 The Used,United States
-The Velvet Underground & Nico,United States
 The Verve,United Kingdom
 The Walkmen,United States
 The War on Drugs,United States
@@ -1085,7 +1064,6 @@ The World Is A Beautiful Place & I Am No Longer Afraid To Die,United States
 The Young Gods,Switzerland
 The xx,United Kingdom
 Theatre of Tragedy,Norway
-Thee Oh Sees,United States
 Theodor Bastard,Russia
 Therapy?,United Kingdom
 These New Puritans,United Kingdom
@@ -1098,7 +1076,6 @@ Three Days Grace,Canada
 Threshold,United Kingdom
 Thrice,United States
 Throbbing Gristle,United Kingdom
-Thursday,United States
 Thy Art Is Murder,Australia
 Thy Catafalque,Hungary
 Tiamat,Sweden
@@ -1106,7 +1083,6 @@ Tides From Nebula,Poland
 To Kill Achilles,United Kingdom
 To/Die/For,Finland
 Tom Meighan,United Kingdom
-Toroidh,Sweden
 Tortoise,United States
 Touché Amoré,United States
 Toundra,Spain
@@ -1117,13 +1093,13 @@ Trentemøller,Denmark
 Trhä,Mexico
 Tribulation,Sweden
 Tricky,United Kingdom
-Tristania,Norway
 Trivium,United States
 Trna,Russia
 Tropical Fuck Storm,Australia
 Turnstile,United States
 Two Lone Swordsmen,United Kingdom
 Ty Segall,United States
+Type O Negative,United States
 Tzolk'in,France
 Tómarúm,United States
 U2,Ireland
@@ -1131,7 +1107,6 @@ U96,Germany
 UFO,United Kingdom
 UNKLE,United Kingdom
 URNE,United Kingdom
-Uada,United States
 Ulcerate,New Zealand
 Ultar,Russia
 Ulver,Norway
@@ -1156,7 +1131,6 @@ Vektor,United States
 Velocity Made Good,United Kingdom
 Venetian Snares,Canada
 Verschillende artiesten,Unknown
-Viagra Boys,Sweden
 Volbeat,Denmark
 Von Hertzen Brothers,Finland
 Voyager,Australia
@@ -1178,7 +1152,6 @@ White Lies,United Kingdom
 White Ward,Ukraine
 Whitechapel,United States
 William Basinski,United States
-Wobbler,Norway
 Wolf Alice,United Kingdom
 Wolverine,Sweden
 Wolves in the Throne Room,United States
@@ -1188,7 +1161,6 @@ Xiu Xiu,United States
 Yard Act,United Kingdom
 Yeah Yeah Yeahs,United States
 Year of No Light,France
-YelworC,Germany
 Yes,United Kingdom
 Yo La Tengo,United States
 Yoth Iria,Greece
