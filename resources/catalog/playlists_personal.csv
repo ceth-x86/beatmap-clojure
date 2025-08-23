@@ -3,7 +3,10 @@ Playlist Name,Description,Last Modified,Can Edit
 "Alternative, Grunge",,2025-08-10T19:33:26Z,true
 "Alternative, Noise Rock","Noise rock is rock music that pushes dissonance, feedback, and abrasive texture to the front while keeping a solid rhythm section and recognizable song skeleton. Born from late-’70s No Wave and hardened in the ’80s–’90s Midwest scenes, it swaps melody for tension: detuned guitars, harsh distortion, clipped repetition, lurching grooves, vocals from deadpan to feral. It isn’t pure “noise”—the rock engine stays—yet it’s harsher than shoegaze, less dance-oriented than dance-punk, and less riff-metal than sludge. The appeal is catharsis and texture: controlled chaos at the edge of rock.",2025-08-20T12:03:53Z,true
 "Ambient, Dark Ambient","Dark ambient centers on sustained drones, sub-bass rumbles, and granular field recordings arranged to create cavernous, oppressive atmospheres rather than melody or rhythm. Percussion is minimal to absent; harmony is ambiguous, often dissonant or microtonal, with textures drawn from environmental sound, analog hum, and restrained industrial or ritual timbres. Unlike industrial noise, it avoids harsh rhythmic assault; unlike classic ambient, it leans into darkness, tension, and psychological unease—suggesting deserted architecture, cosmic voids, or subterranean spaces.",2025-08-11T15:08:10Z,true
+Animal Jazz,,2025-08-21T11:43:54Z,true
 Archive,,2025-02-20T00:05:07Z,true
+Assemblage 23,,2025-08-22T05:52:22Z,true
+Brainstorm,,2025-08-21T14:43:20Z,true
 Deftones,,2025-07-16T10:05:24Z,true
 Detroit Flow,,2025-04-28T09:54:21Z,true
 "Detroit Flow, Post Rock Edition",,2025-04-28T09:54:32Z,true
@@ -22,13 +25,13 @@ Grave Digger,,2025-08-21T09:48:31Z,true
 "Indie, Indietronica","Indietronica is a fusion genre combining the emotional intimacy and melodic sensibility of indie music with the textures, rhythms, and production techniques of electronic music. It often features soft vocals, synth-driven arrangements, glitchy or lo-fi elements, and a DIY aesthetic. The mood ranges from dreamy and introspective to danceable and upbeat, but always retains a personal, handmade feel.",2025-06-25T15:32:10Z,true
 "Indie, Jangle Pop",,2025-08-14T07:30:08Z,true
 "Industrial, Dark Electro","Dark Electro is a dark, aggressive offshoot of electro-industrial that blends harsh synths, distorted vocals, and ominous atmospheres—often rooted in themes of dystopia, horror, and cyberpunk.",2025-06-27T16:29:03Z,true
-"Industrial, Futurepop","Futurepop is a melodic and danceable fusion of synthpop, EBM, and trance, characterized by clean vocals, catchy hooks, uplifting melodies, and futuristic, often emotional themes.",2025-06-28T13:58:33Z,true
+"Industrial, Futurepop","Futurepop is a melodic and danceable fusion of synthpop, EBM, and trance, characterized by clean vocals, catchy hooks, uplifting melodies, and futuristic, often emotional themes.",2025-08-22T05:49:17Z,true
 Marilyn Manson,,2025-02-21T12:52:44Z,true
 "Metal, Death, Melodic Death",,2025-06-25T13:45:30Z,true
 "Metal, Death, Technical",,2025-08-14T07:30:53Z,true
 "Metal, Doom Metal",,2025-08-17T14:28:59Z,true
 "Metal, Heavy Metal",,2025-08-11T13:52:25Z,true
-"Metal, Industrial Metal",,2025-08-21T10:18:13Z,true
+"Metal, Industrial Metal",,2025-08-21T11:33:21Z,true
 "Metal, Metalcore",,2025-08-09T07:17:42Z,true
 "Metal, Post Metal",,2025-08-15T07:20:48Z,true
 "Metal, Power Metal",,2025-08-15T11:27:17Z,true
@@ -47,7 +50,7 @@ Marilyn Manson,,2025-02-21T12:52:44Z,true
 Rage,,2025-08-21T06:01:26Z,true
 "Rock, Arena Rock",,2025-08-14T07:47:56Z,true
 "Rock, Avant-Garde Rock",,2025-07-11T09:34:10Z,true
-"Rock, Classic Rock",,2025-08-17T14:16:22Z,true
+"Rock, Classic Rock",,2025-08-22T07:11:39Z,true
 "Rock, Hard Rock",,2025-06-30T12:35:32Z,true
 Rush,,2025-08-21T10:55:44Z,true
 shuffle,,2025-08-14T07:48:27Z,true
