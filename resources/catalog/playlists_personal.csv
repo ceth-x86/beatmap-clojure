@@ -1,7 +1,7 @@
 Playlist Name,Description,Last Modified,Can Edit
 "2024, shuffle",,2025-05-13T09:55:37Z,true
-"Alternative, Grunge",,2025-08-10T19:33:26Z,true
-"Alternative, Noise Rock","Noise rock is rock music that pushes dissonance, feedback, and abrasive texture to the front while keeping a solid rhythm section and recognizable song skeleton. Born from late-’70s No Wave and hardened in the ’80s–’90s Midwest scenes, it swaps melody for tension: detuned guitars, harsh distortion, clipped repetition, lurching grooves, vocals from deadpan to feral. It isn’t pure “noise”—the rock engine stays—yet it’s harsher than shoegaze, less dance-oriented than dance-punk, and less riff-metal than sludge. The appeal is catharsis and texture: controlled chaos at the edge of rock.",2025-08-20T12:03:53Z,true
+"Alternative, Grunge",,2025-08-28T09:33:51Z,true
+"Alternative, Noise Rock","Noise rock is rock music that pushes dissonance, feedback, and abrasive texture to the front while keeping a solid rhythm section and recognizable song skeleton. Born from late-’70s No Wave and hardened in the ’80s–’90s Midwest scenes, it swaps melody for tension: detuned guitars, harsh distortion, clipped repetition, lurching grooves, vocals from deadpan to feral. It isn’t pure “noise”—the rock engine stays—yet it’s harsher than shoegaze, less dance-oriented than dance-punk, and less riff-metal than sludge. The appeal is catharsis and texture: controlled chaos at the edge of rock.",2025-08-26T07:56:05Z,true
 "Ambient, Dark Ambient","Dark ambient centers on sustained drones, sub-bass rumbles, and granular field recordings arranged to create cavernous, oppressive atmospheres rather than melody or rhythm. Percussion is minimal to absent; harmony is ambiguous, often dissonant or microtonal, with textures drawn from environmental sound, analog hum, and restrained industrial or ritual timbres. Unlike industrial noise, it avoids harsh rhythmic assault; unlike classic ambient, it leans into darkness, tension, and psychological unease—suggesting deserted architecture, cosmic voids, or subterranean spaces.",2025-08-11T15:08:10Z,true
 Animal Jazz,,2025-08-21T11:43:54Z,true
 Archive,,2025-02-20T00:05:07Z,true
@@ -25,13 +25,13 @@ Grave Digger,,2025-08-21T09:48:31Z,true
 "Indie, Indietronica","Indietronica is a fusion genre combining the emotional intimacy and melodic sensibility of indie music with the textures, rhythms, and production techniques of electronic music. It often features soft vocals, synth-driven arrangements, glitchy or lo-fi elements, and a DIY aesthetic. The mood ranges from dreamy and introspective to danceable and upbeat, but always retains a personal, handmade feel.",2025-06-25T15:32:10Z,true
 "Indie, Jangle Pop",,2025-08-14T07:30:08Z,true
 "Industrial, Dark Electro","Dark Electro is a dark, aggressive offshoot of electro-industrial that blends harsh synths, distorted vocals, and ominous atmospheres—often rooted in themes of dystopia, horror, and cyberpunk.",2025-06-27T16:29:03Z,true
-"Industrial, Futurepop","Futurepop is a melodic and danceable fusion of synthpop, EBM, and trance, characterized by clean vocals, catchy hooks, uplifting melodies, and futuristic, often emotional themes.",2025-08-22T05:49:17Z,true
+"Industrial, Futurepop","Futurepop is a melodic and danceable fusion of synthpop, EBM, and trance, characterized by clean vocals, catchy hooks, uplifting melodies, and futuristic, often emotional themes.",2025-08-28T09:37:25Z,true
 Marilyn Manson,,2025-02-21T12:52:44Z,true
 "Metal, Death, Melodic Death",,2025-06-25T13:45:30Z,true
 "Metal, Death, Technical",,2025-08-14T07:30:53Z,true
 "Metal, Doom Metal",,2025-08-17T14:28:59Z,true
 "Metal, Heavy Metal",,2025-08-11T13:52:25Z,true
-"Metal, Industrial Metal",,2025-08-21T11:33:21Z,true
+"Metal, Industrial Metal",,2025-08-28T09:36:37Z,true
 "Metal, Metalcore",,2025-08-09T07:17:42Z,true
 "Metal, Post Metal",,2025-08-15T07:20:48Z,true
 "Metal, Power Metal",,2025-08-15T11:27:17Z,true
@@ -40,6 +40,7 @@ Marilyn Manson,,2025-02-21T12:52:44Z,true
 "Pop, Avant Pop","Avant-pop is a genre that blends experimental or avant-garde techniques with accessible pop music structures, creating artful yet melodic and unconventional songs.",2025-07-01T12:23:58Z,true
 "Pop, Dance Pop",,2025-08-09T20:24:32Z,true
 "Pop, Electropop","Electropop is pop music built primarily from synthesizers, drum machines, and digital production, keeping classic pop structures (verse–chorus, big hooks) at the center. The sound is clean, punchy, and vocal-forward; guitars, if used, are secondary or textural. It differs from synthpop by favoring contemporary production over 1980s retro stylings, and from dance-pop/EDM by avoiding big house/techno drops and DJ-style builds. Compared with electroclash or indietronica, it’s less gritty or indie-band-oriented. Typical traits: mid-to-upbeat tempos, tight programmed rhythms, prominent synth-bass, and memorable toplines.",2025-08-10T12:28:25Z,true
+"Pop, Hyper Pop","Hyperpop is a maximalist, internet-native strain of pop that pushes melodies and emotion to extremes: blown-out, heavily compressed production; bright synthetic timbres; pitch-shifted/Auto-Tuned vocals; glitchy jump-cuts; and candy-sweet hooks delivered with playful, often ironic self-awareness. It embraces collage and speed while staying fundamentally pop—short forms, big choruses, hook-first songwriting.",2025-08-26T09:52:21Z,true
 "Pop, Soft Rock",,2025-08-09T12:34:57Z,true
 "Progressive, Krautrock",,2025-07-02T05:40:36Z,true
 "Progressive, Modern Prog Rock","Modern Prog Rock is a contemporary evolution of progressive rock that blends complex song structures and technical musicianship with modern production, diverse influences, and emotional depth.",2025-06-29T11:45:02Z,true
