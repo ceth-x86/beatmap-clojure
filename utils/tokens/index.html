@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apple Music Authorization</title>
+</head>
+<body>
+  <h1>Apple Music Authorization</h1>
+
+  <script>
+    const script = document.createElement('script');
+    script.src = 'https://js-cdn.music.apple.com/musickit/v3/musickit.js';
+
+    script.onload = () => {
+      console.log("✅ MusicKit loaded");
+
+      // Small delay to ensure initialization
+      setTimeout(() => {
+        if (typeof MusicKit === 'undefined') {
+          console.error("❌ MusicKit is still undefined");
+          return;
+        }
+
+        MusicKit.configure({
+          developerToken: '....',
+          app: {
+            name: 'MyMusicExporter',
+            build: '1.0'
+          }
+        });
+
+        const music = MusicKit.getInstance();
+
+        music.authorize().then(userToken => {
+          console.log("✅ User Token:", userToken);
+          alert("User Token:\n" + userToken);
+        }).catch(err => {
+          console.error("❌ Authorization error:", err);
+        });
+      }, 500); // 500ms delay
+    };
+
+    script.onerror = () => {
+      console.error("❌ Failed to load MusicKit.js");
+    };
+
+    document.head.appendChild(script);
+  </script>
+</body>
+</html>
+
+
