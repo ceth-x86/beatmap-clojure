@@ -1,13 +1,16 @@
 (ns beatmap.operations
   (:require [beatmap.apple-music.albums :as albums]
             [beatmap.apple-music.playlists :as playlists]
+            [beatmap.spotify.artists :as spotify-artists]
             [beatmap.csv.albums :as albums-csv]
             [beatmap.csv.playlists :as playlists-csv]
             [beatmap.csv.tracks :as tracks-csv]
             [beatmap.csv.artists :as artists-csv]
+            [beatmap.csv.spotify-artists :as spotify-artists-csv]
             [beatmap.entities :as entities]
             [clojure.java.io :as io]
             [clojure.string :as str]
+            [clojure.stacktrace :as stacktrace]
             [beatmap.chatgpt.artists :as chatgpt-artists]))
 
 (defn process-apple-music-albums
@@ -21,14 +24,15 @@
             file-path (albums-csv/write-albums-to-csv sorted-albums :filename filename)]
         (println (str "💾 Saving " (count sorted-albums) " albums to CSV file..."))
         (println (str "✅ Successfully saved albums to: " file-path))))))
-
 (defn try-process-albums
   "Process Apple Music albums with error handling."
   [filename]
   (try
     (process-apple-music-albums filename)
     (catch Exception e
-      (println (str "❌ Error during Apple Music integration: " (.getMessage e))))))
+      (println (str "❌ Error during Apple Music integration: " (.getMessage e)))
+      (println (str "❌ Exception type: " (type e)))
+      (println (str "❌ Stack trace: " (with-out-str (stacktrace/print-stack-trace e)))))))
 
 (defn process-apple-music-playlists-and-tracks
   "Fetch and save Apple Music playlists to separate CSV files AND tracks from editable playlists.
@@ -308,10 +312,66 @@
 
 (defn try-process-enrich-artist-by-countries
   "Process enrich artist by countries with error handling."
-  [& {:keys [artists-file enriched-file] 
-      :or {artists-file "resources/catalog/generated/artists.csv" 
+  [& {:keys [artists-file enriched-file]
+      :or {artists-file "resources/catalog/generated/artists.csv"
            enriched-file "resources/catalog/enriched/artists_with_countries.csv"}}]
   (try
     (process-enrich-artist-by-countries :artists-file artists-file :enriched-file enriched-file)
     (catch Exception e
       (println (str "❌ Error enriching artists with countries: " (.getMessage e))))))
+
+(defn process-spotify-followed-artists
+  "Fetch and save Spotify followed artists to CSV.
+
+   Args:
+     filename: Output filename for the CSV file
+     detailed: If true, exports detailed info (genres, popularity, followers).
+               If false, exports only artist names. Default: true"
+  [filename & {:keys [detailed] :or {detailed true}}]
+  (println "🎵 Fetching followed artists from Spotify...")
+  (let [artists (spotify-artists/get-all-followed-artists)]
+    (if (empty? artists)
+      (println "⚠️  No followed artists found in your Spotify account")
+      (let [file-path (if detailed
+                        (spotify-artists-csv/write-spotify-artists-to-csv artists :filename filename)
+                        (spotify-artists-csv/write-simple-artist-names-to-csv artists :filename filename))]
+        (println (str "💾 Saving " (count artists) " Spotify followed artists to CSV file..."))
+        (println (str "✅ Successfully saved artists to: " file-path))))))
+
+(defn try-process-spotify-followed-artists
+  "Process Spotify followed artists with error handling."
+  [filename & {:keys [detailed] :or {detailed true}}]
+  (try
+    (process-spotify-followed-artists filename :detailed detailed)
+    (catch Exception e
+      (println (str "❌ Error during Spotify integration: " (.getMessage e)))
+      (println (str "❌ Exception type: " (type e)))
+      (println (str "❌ Stack trace: " (with-out-str (stacktrace/print-stack-trace e)))))))
+
+(defn process-spotify-top-artists
+  "Fetch and save Spotify top artists to CSV.
+
+   Args:
+     filename: Output filename for the CSV file
+     time-range: Time period ('long_term', 'medium_term', 'short_term'). Default: 'medium_term'
+     detailed: If true, exports detailed info. If false, exports only names. Default: true"
+  [filename & {:keys [time-range detailed] :or {time-range "medium_term" detailed true}}]
+  (println (str "🎵 Fetching top artists from Spotify (time range: " time-range ")..."))
+  (let [artists (spotify-artists/get-all-top-artists :time-range time-range)]
+    (if (empty? artists)
+      (println "⚠️  No top artists found in your Spotify account")
+      (let [file-path (if detailed
+                        (spotify-artists-csv/write-spotify-artists-to-csv artists :filename filename)
+                        (spotify-artists-csv/write-simple-artist-names-to-csv artists :filename filename))]
+        (println (str "💾 Saving " (count artists) " Spotify top artists to CSV file..."))
+        (println (str "✅ Successfully saved artists to: " file-path))))))
+
+(defn try-process-spotify-top-artists
+  "Process Spotify top artists with error handling."
+  [filename & {:keys [time-range detailed] :or {time-range "medium_term" detailed true}}]
+  (try
+    (process-spotify-top-artists filename :time-range time-range :detailed detailed)
+    (catch Exception e
+      (println (str "❌ Error during Spotify integration: " (.getMessage e)))
+      (println (str "❌ Exception type: " (type e)))
+      (println (str "❌ Stack trace: " (with-out-str (stacktrace/print-stack-trace e)))))))

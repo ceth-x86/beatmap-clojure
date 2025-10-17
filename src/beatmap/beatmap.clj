@@ -4,7 +4,8 @@
             [beatmap.tokens :as tokens]
             [beatmap.operations :as ops]
             [beatmap.generate :as generate]
-            [beatmap.enrich :as enrich]))
+            [beatmap.enrich :as enrich]
+            [beatmap.spotify :as spotify]))
 
 (defn display-missing-tokens
   "Display information about missing tokens."
@@ -16,20 +17,23 @@
 (defn display-help
   "Display help information about available commands."
   []
-  (println "🎵 Beatmap - Apple Music Library Exporter")
+  (println "🎵 Beatmap - Music Library Exporter")
   (println "")
   (println "Available commands:")
-  (println "  albums     - Export your albums to CSV file")
-  (println "  playlists  - Export playlists AND tracks from editable playlists")
+  (println "  albums     - Export your albums to CSV file (Apple Music)")
+  (println "  playlists  - Export playlists AND tracks from editable playlists (Apple Music)")
+  (println "  spotify    - Export data from Spotify (followed/top artists)")
   (println "  generate   - Generate derived data from existing files")
   (println "  enrich     - Enrich existing data with additional information")
   (println "  help       - Show this help message")
   (println "")
   (println "Examples:")
-  (println "  lein run albums")
-  (println "  lein run playlists")
-  (println "  lein run generate artists")
-  (println "  lein run enrich artist_by_countries"))
+  (println "  make run-cmd CMD=albums")
+  (println "  make run-cmd CMD=playlists")
+  (println "  make run-cmd CMD=\"spotify followed-artists\"")
+  (println "  make run-cmd CMD=\"spotify top-artists\"")
+  (println "  make run-cmd CMD=\"generate artists\"")
+  (println "  make run-cmd CMD=\"enrich artist_by_countries\""))
 
 (defn greet
   "Callable entry point to the application."
@@ -38,10 +42,12 @@
     (do
       (println "✅ All tokens are configured")
       (let [command (first (:args opts))
-            subcommand (second (:args opts))]
+            subcommand (second (:args opts))
+            rest-args (drop 2 (:args opts))]
         (case command
           "albums" (ops/try-process-albums "resources/catalog/albums.csv")
           "playlists" (ops/try-process-playlists-and-tracks "resources/catalog/playlists_personal.csv" "resources/catalog/playlists_apple_music.csv" "resources/catalog/playlists")
+          "spotify" (apply spotify/handle-spotify-command subcommand rest-args)
           "generate" (generate/handle-generate-command subcommand)
           "enrich" (enrich/handle-enrich-command subcommand)
           "help" (display-help)

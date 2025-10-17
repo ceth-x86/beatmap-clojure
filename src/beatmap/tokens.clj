@@ -7,7 +7,8 @@
   (let [app-config (config/merge-configs)]
     {:developer-token (config/get-secret app-config :developer-token)
      :user-token (config/get-secret app-config :user-token)
-     :openai-api-key (config/get-secret app-config :openai-api-key)}))
+     :openai-api-key (config/get-secret app-config :openai-api-key)
+     :spotify-token (config/get-secret app-config :spotify-token)}))
 
 (defn get-developer-token
   "Get developer token"
@@ -27,6 +28,12 @@
   (let [app-config (config/merge-configs)]
     (config/get-secret app-config :openai-api-key)))
 
+(defn get-spotify-token
+  "Get Spotify access token"
+  []
+  (let [app-config (config/merge-configs)]
+    (config/get-secret app-config :spotify-token)))
+
 (defn validate-tokens
   "Validate that all required tokens are present"
   []
@@ -43,4 +50,5 @@
 ;; (require '[beatmap.tokens :as tokens])
 ;; (tokens/get-developer-token)
 ;; (tokens/get-openai-api-key)
+;; (tokens/get-spotify-token)
 ;; (tokens/validate-tokens) 

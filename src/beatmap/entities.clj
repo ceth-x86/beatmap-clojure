@@ -21,9 +21,9 @@
   [albums]
   (sort-by (fn [album]
              (let [attributes (:attributes album)
-                   artist (str/lower-case (:artistName attributes))
+                   artist (str/lower-case (or (:artistName attributes) "Unknown Artist"))
                    year (parse-release-date (:releaseDate attributes))
-                   album-name (str/lower-case (:name attributes))]
+                   album-name (str/lower-case (or (:name attributes) "Unknown Album"))]
                [artist year album-name]))
            albums))
 
