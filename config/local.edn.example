@@ -1,7 +1,6 @@
 {:secrets
  {:developer-token "your-apple-music-developer-token-here"
   :user-token "your-apple-music-user-token-here"
-  :spotify-token "your-spotify-access-token-here"
   :openai-api-key "your-openai-api-key-here"}
 
  :development

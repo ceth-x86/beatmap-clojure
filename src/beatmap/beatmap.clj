@@ -4,8 +4,7 @@
             [beatmap.tokens :as tokens]
             [beatmap.operations :as ops]
             [beatmap.generate :as generate]
-            [beatmap.enrich :as enrich]
-            [beatmap.spotify :as spotify]))
+            [beatmap.enrich :as enrich]))
 
 (defn display-missing-tokens
   "Display information about missing tokens."
@@ -22,7 +21,6 @@
   (println "Available commands:")
   (println "  albums     - Export your albums to CSV file (Apple Music)")
   (println "  playlists  - Export playlists AND tracks from editable playlists (Apple Music)")
-  (println "  spotify    - Export data from Spotify (followed/top artists)")
   (println "  generate   - Generate derived data from existing files")
   (println "  enrich     - Enrich existing data with additional information")
   (println "  help       - Show this help message")
@@ -30,8 +28,6 @@
   (println "Examples:")
   (println "  make run-cmd CMD=albums")
   (println "  make run-cmd CMD=playlists")
-  (println "  make run-cmd CMD=\"spotify followed-artists\"")
-  (println "  make run-cmd CMD=\"spotify top-artists\"")
   (println "  make run-cmd CMD=\"generate artists\"")
   (println "  make run-cmd CMD=\"enrich artist_by_countries\""))
 
@@ -47,7 +43,6 @@
         (case command
           "albums" (ops/try-process-albums "resources/catalog/albums.csv")
           "playlists" (ops/try-process-playlists-and-tracks "resources/catalog/playlists_personal.csv" "resources/catalog/playlists_apple_music.csv" "resources/catalog/playlists")
-          "spotify" (apply spotify/handle-spotify-command subcommand rest-args)
           "generate" (generate/handle-generate-command subcommand)
           "enrich" (enrich/handle-enrich-command subcommand)
           "help" (display-help)
