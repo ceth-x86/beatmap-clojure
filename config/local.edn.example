@@ -3,6 +3,9 @@
   :user-token "your-apple-music-user-token-here"
   :openai-api-key "your-openai-api-key-here"}
 
+ ;; Optional: override catalog output directory (default: "resources/catalog")
+ ;; :catalog {:dir "/path/to/your/catalog"}
+
  :development
  {:debug true
   :mock-external-services true}} 

@@ -113,6 +113,13 @@ The application requires API tokens configured in `config/local.edn`:
 
 Use `make setup-config` to create the initial configuration file from the example.
 
+### Custom Catalog Directory
+By default, all CSV exports go to `resources/catalog/`. To change this, add to `config/local.edn`:
+```clojure
+:catalog {:dir "/path/to/your/catalog"}
+```
+Or set the `CATALOG_DIR` environment variable.
+
 ## Testing
 
 - Comprehensive test coverage for all core modules in `test/` directory

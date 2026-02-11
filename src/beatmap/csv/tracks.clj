@@ -1,5 +1,6 @@
 (ns beatmap.csv.tracks
   (:require [beatmap.csv.utils :as utils]
+            [beatmap.config :as config]
             [clojure.java.io :as io]
             [beatmap.apple-music.playlists :as playlists]))
 
@@ -45,7 +46,7 @@
    
    The CSV file will be named: playlist_tracks_{playlist-id}.csv
    Columns: Artist, Album, Track, Release Date, Genre, Duration (minutes)"
-  [playlist-id playlist-name tracks & {:keys [output-dir] :or {output-dir "resources/catalog/playlist_tracks"}}]
+  [playlist-id playlist-name tracks & {:keys [output-dir] :or {output-dir (str (config/get-catalog-dir) "/playlist_tracks")}}]
   (try
     ;; Create output directory if it doesn't exist
     (.mkdirs (io/file output-dir))
@@ -83,7 +84,7 @@
    
    Returns:
      A map with :success boolean and :filepath string (if successful)"
-  [playlist tracks & {:keys [output-dir] :or {output-dir "resources/catalog/playlist_tracks"}}]
+  [playlist tracks & {:keys [output-dir] :or {output-dir (str (config/get-catalog-dir) "/playlist_tracks")}}]
   (let [playlist-id (:id playlist)
         playlist-name (get-in playlist [:attributes :name] "Unknown Playlist")]
     (println (str "🎵 Processing tracks for playlist: " playlist-name " (" (count tracks) " tracks)"))
@@ -109,7 +110,7 @@
      (process-all-playlist-tracks playlists 
        (fn [playlist-id playlist-name] 
          (get-playlist-tracks-with-pagination playlist-id playlist-name)))"
-  [playlists tracks-fn & {:keys [output-dir] :or {output-dir "resources/catalog/playlist_tracks"}}]
+  [playlists tracks-fn & {:keys [output-dir] :or {output-dir (str (config/get-catalog-dir) "/playlist_tracks")}}]
   (let [editable-playlists (filter #(get-in % [:attributes :canEdit] false) playlists)]
     (println (str "🎵 Processing tracks for " (count editable-playlists) " editable playlists (out of " (count playlists) " total)..."))
     

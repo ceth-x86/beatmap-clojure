@@ -5,6 +5,7 @@
             [beatmap.csv.playlists :as playlists-csv]
             [beatmap.csv.tracks :as tracks-csv]
             [beatmap.csv.artists :as artists-csv]
+            [beatmap.config :as config]
             [beatmap.entities :as entities]
             [clojure.java.io :as io]
             [clojure.string :as str]
@@ -67,26 +68,24 @@
 
 (defn process-generate-artists
   "Generate artists CSV from existing albums CSV."
-  [& {:keys [albums-file artists-file] 
-      :or {albums-file "resources/catalog/albums.csv" 
-           artists-file "resources/catalog/generated/artists.csv"}}]
-  (println (str "📖 Reading albums from " albums-file "..."))
-  (let [artists (albums-csv/read-albums-csv albums-file)]
-    (if (empty? artists)
-      (println "⚠️  No artists found in albums file")
-      (do
-        (println (str "🎨 Found " (count artists) " unique artists"))
-        ;; Create output directory if it doesn't exist
-        (let [output-dir (-> artists-file io/file .getParent)]
-          (when output-dir
-            (.mkdirs (io/file output-dir))))
-        (artists-csv/write-artists-to-csv artists :filename artists-file)))))
+  [& {:keys [albums-file artists-file]}]
+  (let [catalog-dir (config/get-catalog-dir)
+        albums-file (or albums-file (str catalog-dir "/albums.csv"))
+        artists-file (or artists-file (str catalog-dir "/generated/artists.csv"))]
+    (println (str "📖 Reading albums from " albums-file "..."))
+    (let [artists (albums-csv/read-albums-csv albums-file)]
+      (if (empty? artists)
+        (println "⚠️  No artists found in albums file")
+        (do
+          (println (str "🎨 Found " (count artists) " unique artists"))
+          (let [output-dir (-> artists-file io/file .getParent)]
+            (when output-dir
+              (.mkdirs (io/file output-dir))))
+          (artists-csv/write-artists-to-csv artists :filename artists-file))))))
 
 (defn try-process-generate-artists
   "Process generate artists with error handling."
-  [& {:keys [albums-file artists-file] 
-      :or {albums-file "resources/catalog/albums.csv" 
-           artists-file "resources/catalog/generated/artists.csv"}}]
+  [& {:keys [albums-file artists-file]}]
   (try
     (process-generate-artists :albums-file albums-file :artists-file artists-file)
     (catch Exception e
@@ -277,22 +276,21 @@
 
 (defn process-enrich-artist-by-countries
   "Enrich artists CSV with country information.
-   
+
    Args:
      artists-file: Path to input artists CSV file
      enriched-file: Path to output enriched CSV file
-   
+
    Returns:
      The file path where enriched CSV was written"
-  [& {:keys [artists-file enriched-file] 
-      :or {artists-file "resources/catalog/generated/artists.csv" 
-           enriched-file "resources/catalog/enriched/artists_with_countries.csv"}}]
-  (println (str "📖 Reading artists from " artists-file "..."))
-  (let [artists (read-artists-from-csv artists-file)]
-    (if (empty? artists)
-      (println "⚠️  No artists found in file")
-      (do
-        ;; Get country mappings using ChatGPT
+  [& {:keys [artists-file enriched-file]}]
+  (let [catalog-dir (config/get-catalog-dir)
+        artists-file (or artists-file (str catalog-dir "/generated/artists.csv"))
+        enriched-file (or enriched-file (str catalog-dir "/enriched/artists_with_countries.csv"))]
+    (println (str "📖 Reading artists from " artists-file "..."))
+    (let [artists (read-artists-from-csv artists-file)]
+      (if (empty? artists)
+        (println "⚠️  No artists found in file")
         (let [country-mappings (chatgpt-artists/get-artist-countries artists :batch-size 25)
               enriched-artists (map (fn [artist]
                                      [artist (get country-mappings artist "Unknown")])
@@ -302,7 +300,6 @@
           (println (str "📊 Final country mapping results:"))
           (println (str "   Known countries: " known-countries " artists"))
           (println (str "   Unknown countries: " unknown-countries " artists"))
-          ;; Create output directory if it doesn't exist
           (let [output-dir (-> enriched-file io/file .getParent)]
             (when output-dir
               (.mkdirs (io/file output-dir))))
@@ -310,9 +307,7 @@
 
 (defn try-process-enrich-artist-by-countries
   "Process enrich artist by countries with error handling."
-  [& {:keys [artists-file enriched-file]
-      :or {artists-file "resources/catalog/generated/artists.csv"
-           enriched-file "resources/catalog/enriched/artists_with_countries.csv"}}]
+  [& {:keys [artists-file enriched-file]}]
   (try
     (process-enrich-artist-by-countries :artists-file artists-file :enriched-file enriched-file)
     (catch Exception e

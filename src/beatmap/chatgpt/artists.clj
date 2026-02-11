@@ -1,10 +1,12 @@
 (ns beatmap.chatgpt.artists
   (:require [beatmap.chatgpt.core :as chatgpt]
+            [beatmap.config :as config]
             [clojure.string :as str]
             [clojure.data.json :as json]
             [clojure.java.io :as io]))
 
-(def enriched-cache-file "resources/catalog/enriched/artists_with_countries.csv")
+(defn enriched-cache-file []
+  (str (config/get-catalog-dir) "/enriched/artists_with_countries.csv"))
 
 (defn load-cached-countries
   "Load existing artist-country mappings from cache file.
@@ -12,9 +14,9 @@
    Returns:
      Map of artist -> country from existing cache, or empty map if file doesn't exist"
   []
-  (if (.exists (io/file enriched-cache-file))
+  (if (.exists (io/file (enriched-cache-file)))
     (try
-      (with-open [reader (io/reader enriched-cache-file)]
+      (with-open [reader (io/reader (enriched-cache-file))]
         (let [lines (line-seq reader)
               data-lines (rest lines)] ; Skip header "Artist,Country"
           (into {} (map (fn [line]
@@ -77,8 +79,8 @@
         csv-lines (cons ["Artist" "Country"] csv-rows)
         csv-content (str/join "\n" (map #(str/join "," %) csv-lines))]
     (try
-      (spit enriched-cache-file csv-content)
-      (println (str "💾 Saved intermediate results to " enriched-cache-file " (" (count combined-results) " total entries)"))
+      (spit (enriched-cache-file) csv-content)
+      (println (str "💾 Saved intermediate results to " (enriched-cache-file) " (" (count combined-results) " total entries)"))
       combined-results
       (catch Exception e
         (println (str "⚠️ Failed to save intermediate results: " (.getMessage e)))
@@ -193,7 +195,7 @@
   [total-count]
   (println "🎯 Starting artist country enrichment process")
   (println (str "📊 Total unique artists to process: " total-count))
-  (println (str "💾 Loading existing cache from " enriched-cache-file "...")))
+  (println (str "💾 Loading existing cache from " (enriched-cache-file) "...")))
 
 (defn print-cache-analysis
   "Print cache analysis information."

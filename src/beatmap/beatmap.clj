@@ -39,10 +39,11 @@
       (println "✅ All tokens are configured")
       (let [command (first (:args opts))
             subcommand (second (:args opts))
-            rest-args (drop 2 (:args opts))]
+            rest-args (drop 2 (:args opts))
+            catalog-dir (config/get-catalog-dir)]
         (case command
-          "albums" (ops/try-process-albums "resources/catalog/albums.csv")
-          "playlists" (ops/try-process-playlists-and-tracks "resources/catalog/playlists_personal.csv" "resources/catalog/playlists_apple_music.csv" "resources/catalog/playlists")
+          "albums" (ops/try-process-albums (str catalog-dir "/albums.csv"))
+          "playlists" (ops/try-process-playlists-and-tracks (str catalog-dir "/playlists_personal.csv") (str catalog-dir "/playlists_apple_music.csv") (str catalog-dir "/playlists"))
           "generate" (generate/handle-generate-command subcommand)
           "enrich" (enrich/handle-enrich-command subcommand)
           "help" (display-help)

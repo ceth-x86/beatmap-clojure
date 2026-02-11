@@ -9,4 +9,7 @@
  
  :logging
  {:level (or (System/getenv "LOG_LEVEL") "info")
-  :format (or (System/getenv "LOG_FORMAT") "json")}} 
+  :format (or (System/getenv "LOG_FORMAT") "json")}
+
+ :catalog
+ {:dir (or (System/getenv "CATALOG_DIR") "resources/catalog")}} 

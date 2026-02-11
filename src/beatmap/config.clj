@@ -41,7 +41,10 @@
   [config secret-key]
   (get-in config [:secrets secret-key]))
 
-;; Example usage:
-;; (def config (merge-configs))
-;; (get-config config :api :base-url)
-;; (get-secret config :api-token) 
+(def default-catalog-dir "resources/catalog")
+
+(defn get-catalog-dir
+  "Get catalog directory from configuration, defaults to 'resources/catalog'"
+  []
+  (let [config (merge-configs)]
+    (or (get-in config [:catalog :dir]) default-catalog-dir))) 
