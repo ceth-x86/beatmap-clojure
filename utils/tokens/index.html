@@ -3,50 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <title>Apple Music Authorization</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 600px; margin: 60px auto; text-align: center; }
+    #auth-btn { font-size: 1.1em; padding: 12px 32px; border-radius: 8px; border: none; background: #007aff; color: white; cursor: pointer; margin-top: 24px; }
+    #auth-btn:disabled { background: #c7c7cc; cursor: default; }
+    #status { margin-top: 24px; font-size: 1.2em; }
+    .success { color: #34c759; }
+    .error { color: #ff3b30; }
+    .loading { color: #8e8e93; }
+  </style>
 </head>
 <body>
   <h1>Apple Music Authorization</h1>
+  <button id="auth-btn" disabled>Loading MusicKit...</button>
+  <div id="status" class="loading"></div>
 
   <script>
+    const statusEl = document.getElementById('status');
+    const authBtn = document.getElementById('auth-btn');
+    let musicInstance = null;
+
+    async function authorize() {
+      authBtn.disabled = true;
+      authBtn.textContent = 'Authorizing...';
+      statusEl.textContent = '';
+
+      try {
+        const userToken = await musicInstance.authorize();
+
+        authBtn.textContent = 'Sending token...';
+
+        const resp = await fetch('/callback', { method: 'POST', body: userToken });
+        if (!resp.ok) throw new Error('Server returned ' + resp.status);
+
+        authBtn.style.display = 'none';
+        statusEl.textContent = 'Tokens saved successfully! You can close this tab.';
+        statusEl.className = 'success';
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err;
+        statusEl.className = 'error';
+        authBtn.textContent = 'Authorize';
+        authBtn.disabled = false;
+      }
+    }
+
+    authBtn.addEventListener('click', authorize);
+
     const script = document.createElement('script');
     script.src = 'https://js-cdn.music.apple.com/musickit/v3/musickit.js';
 
-    script.onload = () => {
-      console.log("✅ MusicKit loaded");
-
-      // Small delay to ensure initialization
-      setTimeout(() => {
-        if (typeof MusicKit === 'undefined') {
-          console.error("❌ MusicKit is still undefined");
-          return;
-        }
-
-        MusicKit.configure({
-          developerToken: '....',
-          app: {
-            name: 'MyMusicExporter',
-            build: '1.0'
-          }
+    script.onload = async () => {
+      try {
+        musicInstance = await MusicKit.configure({
+          developerToken: '{{DEVELOPER_TOKEN}}',
+          app: { name: 'MyMusicExporter', build: '1.0' }
         });
-
-        const music = MusicKit.getInstance();
-
-        music.authorize().then(userToken => {
-          console.log("✅ User Token:", userToken);
-          alert("User Token:\n" + userToken);
-        }).catch(err => {
-          console.error("❌ Authorization error:", err);
-        });
-      }, 500); // 500ms delay
+        authBtn.textContent = 'Authorize';
+        authBtn.disabled = false;
+      } catch (err) {
+        statusEl.textContent = 'Failed to configure MusicKit: ' + err;
+        statusEl.className = 'error';
+      }
     };
 
     script.onerror = () => {
-      console.error("❌ Failed to load MusicKit.js");
+      statusEl.textContent = 'Failed to load MusicKit.js';
+      statusEl.className = 'error';
     };
 
     document.head.appendChild(script);
   </script>
 </body>
 </html>
-
-

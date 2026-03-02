@@ -1,4 +1,4 @@
-.PHONY: help run run-custom test build clean repl deps
+.PHONY: help run run-custom test build clean repl deps refresh-tokens
 
 # Default target
 help:
@@ -13,6 +13,7 @@ help:
 	@echo "  deps       - Check dependencies"
 	@echo "  setup-config - Setup configuration files"
 	@echo "  check-tokens - Check if all tokens are configured"
+	@echo "  refresh-tokens - Refresh Apple Music tokens (browser auth)"
 	@echo "  test-apple-music - Test Apple Music API"
 	@echo "  show-config - Show current configuration"
 	@echo "  help       - Show this help"
@@ -140,6 +141,14 @@ show-config:
 check-tokens:
 	@echo "Checking token configuration..."
 	@clojure -M -e "(require '[beatmap.tokens :as tokens]) (if (tokens/validate-tokens) (println \"✅ All tokens are configured\") (do (println \"⚠️  Missing tokens:\") (doseq [[k v] (tokens/missing-tokens)] (println (str \"   - \" k)))))"
+
+# Refresh Apple Music tokens (generates developer token, opens browser for user auth, saves both to config)
+refresh-tokens:
+	@if [ -f utils/tokens/.env ]; then \
+		set -a && . utils/tokens/.env && set +a && cd utils/tokens && python3 refresh_tokens.py; \
+	else \
+		cd utils/tokens && python3 refresh_tokens.py; \
+	fi
 
 # Test Apple Music API
 test-apple-music:
